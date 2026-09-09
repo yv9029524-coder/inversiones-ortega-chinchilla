@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacto | Inversiones Ortega Chinchilla</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           PÁGINA DE CONTACTO
+        ========================================= */
+
+        .contact-section {
+            padding: 70px 20px;
+            background: #ffffff;
+        }
+
+        .contact-grid {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 30px;
+        }
+
+        .contact-info {
+            background: #171717;
+            color: white;
+            padding: 35px;
+            border-radius: 18px;
+        }
+
+        .contact-info h2 {
+            color: #f5c400;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 7px;
+        }
+
+        .contact-item p {
+            color: #ddd;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #eeeeee;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #f5c400;
+            box-shadow: 0 0 0 3px rgba(245,196,0,0.12);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            padding: 14px;
+            border-radius: 8px;
+            background: #f5c400;
+            color: #111;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #d99600;
+            transform: translateY(-2px);
+        }
+
+        /* MENSAJE DE ÉXITO */
+
+        .form-success {
+            display: none;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #eaf8ee;
+            color: #176b35;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .hours-section {
+            padding: 0 20px 70px;
+            background: #ffffff;
+        }
+
+        .hours-box {
+            max-width: 1100px;
+            margin: auto;
+            background: #f5f5f5;
+            border-left: 5px solid #f5c400;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .hours-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .hours-box p {
+            margin: 8px 0;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 28px 22px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .contact-section {
+                padding: 55px 15px;
+            }
+
+            .hours-section {
+                padding: 0 15px 55px;
+            }
+
+            .contact-info h2,
+            .contact-form h2 {
+                font-size: 24px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+
+            <img src="img/logo/logo.jpg"
+                 alt="Inversiones Ortega Chinchilla">
+
+            <span>Inversiones Ortega Chinchilla</span>
+
+        </a>
+
+
+        <button class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Abrir menú">
+
+            ☰
+
+        </button>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="contacto.html" class="active">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+                (<span id="cart-count">0</span>)
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================
+     ENCABEZADO DE CONTACTO
+========================================= -->
+
+<section class="page-hero">
+
+    <div class="container">
+
+        <span class="section-tag">
+            CONTACTO
+        </span>
+
+        <h1>
+            Estamos para atenderte
+        </h1>
+
+        <p>
+            Comunicate con Inversiones Ortega Chinchilla
+            para consultar sobre nuestros productos y servicios.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     INFORMACIÓN Y FORMULARIO
+========================================= -->
+
+<section class="contact-section">
+
+    <div class="contact-grid">
+
+
+        <!-- INFORMACIÓN -->
+
+        <div class="contact-info">
+
+            <h2>
+                Información de contacto
+            </h2>
+
+
+            <div class="contact-item">
+
+                <h3>
+                    📞 Teléfono
+                </h3>
+
+                <p>
+                    3363-3491
+                </p>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <h3>
+                    📧 Correo electrónico
+                </h3>
+
+                <p>
+                    inversionesortegachinchilla@gmail.com
+                </p>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <h3>
+                    📍 Dirección
+                </h3>
+
+                <p>
+                    2.ª calle, primera y segunda avenida,
+                    esquina opuesta al Ferrocarril Nacional,
+                    San Pedro Sula.
+                </p>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <h3>
+                    📱 Redes sociales
+                </h3>
+
+                <p>
+                    Facebook
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMULARIO -->
+
+        <div class="contact-form">
+
+            <h2>
+                Envíanos un mensaje
+            </h2>
+
+
+            <form id="contact-form"
+                  action="https://formspree.io/f/xzebjkre"
+                  method="POST">
+
+
+                <div class="form-group">
+
+                    <label for="nombre">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Escribí tu nombre"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        placeholder="Escribí tu teléfono"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="correo">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="Escribí tu correo"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="mensaje">
+                        Mensaje
+                    </label>
+
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        placeholder="¿En qué podemos ayudarte?"
+                        required></textarea>
+
+                </div>
+
+
+                <button type="submit">
+                    Enviar mensaje
+                </button>
+
+            </form>
+
+
+            <!-- MENSAJE DESPUÉS DE ENVIAR -->
+
+            <div id="form-success"
+                 class="form-success">
+
+                ✅ ¡Mensaje enviado correctamente!
+                Gracias por comunicarte con nosotros.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     HORARIOS
+========================================= -->
+
+<section class="hours-section">
+
+    <div class="hours-box">
+
+        <h2>
+            🕐 Horario de atención
+        </h2>
+
+        <p>
+            <strong>Lunes a viernes:</strong>
+            8:00 a.m. – 5:00 p.m.
+        </p>
+
+        <p>
+            <strong>Sábado:</strong>
+            8:00 a.m. – 4:00 p.m.
+        </p>
+
+        <p>
+            <strong>Domingo:</strong>
+            Atención únicamente con reserva.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="cta">
+
+    <div class="container cta-content">
+
+        <div>
+
+            <span>
+                INVERSIONES ORTEGA CHINCHILLA
+            </span>
+
+            <h2>
+                ¿Necesitás nuestros productos o servicios?
+            </h2>
+
+            <p>
+                También podés visitar nuestro catálogo.
+            </p>
+
+        </div>
+
+
+        <a href="productos.html"
+           class="btn btn-light">
+
+            Ver productos
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-column footer-about">
+
+            <img src="img/logo/logo.jpg"
+                 alt="Inversiones Ortega Chinchilla"
+                 class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y mecánica general
+                para el cuidado y mantenimiento de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes</strong><br>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado</strong><br>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo</strong><br>
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     WHATSAPP
+========================================= -->
+
+<a href="#"
+   class="whatsapp-button"
+   aria-label="Contactar por WhatsApp">
+
+    WhatsApp
+
+</a>
+
+
+<!-- =========================================
+     SCRIPTS
+========================================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+    const formulario = document.getElementById("contact-form");
+    const mensajeExito = document.getElementById("form-success");
+
+    formulario.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const boton = formulario.querySelector("button");
+
+        boton.disabled = true;
+        boton.textContent = "Enviando...";
+
+        try {
+
+            const respuesta = await fetch(formulario.action, {
+                method: "POST",
+                body: new FormData(formulario),
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (respuesta.ok) {
+
+                formulario.reset();
+
+                mensajeExito.classList.add("show");
+
+                boton.textContent = "Mensaje enviado";
+
+                setTimeout(function() {
+
+                    mensajeExito.classList.remove("show");
+
+                    boton.disabled = false;
+                    boton.textContent = "Enviar mensaje";
+
+                }, 5000);
+
+            } else {
+
+                alert("No se pudo enviar el mensaje. Intentá nuevamente.");
+
+                boton.disabled = false;
+                boton.textContent = "Enviar mensaje";
+
+            }
+
+        } catch (error) {
+
+            alert("Ocurrió un error al enviar el mensaje. Revisá tu conexión e intentá nuevamente.");
+
+            boton.disabled = false;
+            boton.textContent = "Enviar mensaje";
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>

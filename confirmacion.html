@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Pedido confirmado | Inversiones Ortega Chinchilla
+    </title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <style>
+
+        /* =========================================
+           CONFIRMACIÓN
+        ========================================= */
+
+        .confirmation-section {
+
+            padding: 80px 20px 100px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f7f7,
+                    #ffffff
+                );
+
+            min-height: 70vh;
+
+        }
+
+
+        .confirmation-card {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: #ffffff;
+
+            border-radius: 22px;
+
+            padding: 50px;
+
+            box-shadow:
+                0 18px 50px rgba(0,0,0,0.10);
+
+            border: 1px solid #e5e5e5;
+
+        }
+
+
+        /* =========================================
+           ENCABEZADO
+        ========================================= */
+
+        .confirmation-header {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .confirmation-icon {
+
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 20px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: #111111;
+
+            color: #f5c400;
+
+            font-size: 38px;
+
+            font-weight: 900;
+
+        }
+
+
+        .confirmation-label {
+
+            display: block;
+
+            color: #d99600;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .confirmation-header h1 {
+
+            color: #111111;
+
+            font-size: clamp(34px, 5vw, 48px);
+
+            line-height: 1.15;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .confirmation-header > p {
+
+            color: #666666;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            max-width: 650px;
+
+            margin: 0 auto 8px;
+
+        }
+
+
+        /* =========================================
+           INFORMACIÓN DEL PEDIDO
+        ========================================= */
+
+        .order-information {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .order-info-box {
+
+            padding: 18px;
+
+            background: #f7f7f7;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+        }
+
+
+        .order-info-box span {
+
+            display: block;
+
+            color: #777777;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .order-info-box strong {
+
+            color: #111111;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================================
+           RESUMEN
+        ========================================= */
+
+        .confirmation-details {
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid #e5e5e5;
+
+            background: #ffffff;
+
+        }
+
+
+        .confirmation-details-header {
+
+            padding: 20px 25px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+        }
+
+
+        .confirmation-details-header h2 {
+
+            margin: 0;
+
+            color: #f5c400;
+
+            font-size: 20px;
+
+        }
+
+
+        #confirmation-products {
+
+            padding: 10px 25px;
+
+        }
+
+
+        .confirmation-product {
+
+            display: grid;
+
+            grid-template-columns:
+                70px 1fr auto;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px solid #eeeeee;
+
+        }
+
+
+        .confirmation-product:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .confirmation-product-image {
+
+            width: 70px;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #f5f5f5;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+        .confirmation-product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        .confirmation-product-info strong {
+
+            display: block;
+
+            color: #111111;
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .confirmation-product-info p {
+
+            color: #777777;
+
+            font-size: 13px;
+
+            margin: 0;
+
+        }
+
+
+        .confirmation-product-price {
+
+            color: #111111;
+
+            font-size: 16px;
+
+            font-weight: 900;
+
+        }
+
+
+        /* =========================================
+           TOTAL
+        ========================================= */
+
+        .confirmation-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 25px;
+
+            background: #111111;
+
+        }
+
+
+        .confirmation-total span {
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+        }
+
+
+        .confirmation-total strong {
+
+            color: #f5c400;
+
+            font-size: 30px;
+
+        }
+
+
+        /* =========================================
+           AVISO
+        ========================================= */
+
+        .confirmation-notice {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            border-radius: 12px;
+
+            background: #fff8df;
+
+            border: 1px solid #f0d36a;
+
+            color: #555555;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .confirmation-notice strong {
+
+            color: #111111;
+
+        }
+
+
+        /* =========================================
+           SEGURIDAD
+        ========================================= */
+
+        .confirmation-secure {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            color: #777777;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================================
+           BOTONES
+        ========================================= */
+
+        .confirmation-actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 35px;
+
+        }
+
+
+        .confirmation-actions a {
+
+            text-decoration: none;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .confirmation-section {
+
+                padding: 50px 15px 70px;
+
+            }
+
+
+            .confirmation-card {
+
+                padding: 30px 20px;
+
+                border-radius: 17px;
+
+            }
+
+
+            .order-information {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .confirmation-product {
+
+                grid-template-columns:
+                    60px 1fr;
+
+            }
+
+
+            .confirmation-product-price {
+
+                grid-column: 2;
+
+            }
+
+
+            .confirmation-product-image {
+
+                width: 60px;
+
+                height: 60px;
+
+            }
+
+
+            .confirmation-total {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 8px;
+
+            }
+
+
+            .confirmation-actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .confirmation-actions a {
+
+                width: 100%;
+
+                text-align: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html"
+           class="logo">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla">
+
+        </a>
+
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menú">
+
+            ☰
+
+        </button>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html"
+               class="cart-link">
+
+                🛒 Carrito
+
+                <span id="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     CONFIRMACIÓN
+========================================= -->
+
+<main>
+
+<section class="confirmation-section">
+
+    <div class="container">
+
+        <div class="confirmation-card">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="confirmation-header">
+
+                <div class="confirmation-icon">
+                    ✓
+                </div>
+
+                <span class="confirmation-label">
+                    PEDIDO RECIBIDO
+                </span>
+
+                <h1>
+                    ¡Gracias por tu compra!
+                </h1>
+
+                <p>
+                    Hemos recibido correctamente
+                    la información de tu pedido.
+                </p>
+
+                <p>
+                    Nuestro equipo se pondrá en contacto
+                    contigo para confirmar los detalles
+                    de la compra.
+                </p>
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="order-information">
+
+
+                <div class="order-info-box">
+
+                    <span>
+                        Número de pedido
+                    </span>
+
+                    <strong id="order-number">
+                        Generando...
+                    </strong>
+
+                </div>
+
+
+                <div class="order-info-box">
+
+                    <span>
+                        Fecha
+                    </span>
+
+                    <strong id="order-date">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="order-info-box">
+
+                    <span>
+                        Método de pago
+                    </span>
+
+                    <strong id="order-payment">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RESUMEN -->
+
+            <div class="confirmation-details">
+
+
+                <div class="confirmation-details-header">
+
+                    <h2>
+                        🧾 Resumen del pedido
+                    </h2>
+
+                </div>
+
+
+                <div id="confirmation-products">
+
+                    <!-- Productos mediante JavaScript -->
+
+                </div>
+
+
+                <div class="confirmation-total">
+
+                    <span>
+                        Total de la compra
+                    </span>
+
+                    <strong id="confirmation-total">
+                        L 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVISO -->
+
+            <div class="confirmation-notice">
+
+                <strong>
+                    📌 Importante:
+                </strong>
+
+                Este sitio utiliza un proceso de compra
+                simulado como parte del prototipo de la
+                tienda en línea. Un representante de
+                Inversiones Ortega Chinchilla se pondrá
+                en contacto para confirmar el pedido,
+                disponibilidad y forma de pago.
+
+            </div>
+
+
+            <!-- SEGURIDAD -->
+
+            <div class="confirmation-secure">
+
+                🔒 Información procesada de forma segura
+                durante el proceso de compra.
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="confirmation-actions">
+
+                <a
+                    href="productos.html"
+                    class="btn-primary">
+
+                    🛍️ Seguir comprando
+
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="btn-secondary">
+
+                    ← Volver al inicio
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-column footer-about">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla"
+                class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y
+                mecánica general para el cuidado
+                y mantenimiento de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes</strong><br>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado</strong><br>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo</strong><br>
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©️ 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        const pedido =
+            JSON.parse(
+                localStorage.getItem("pedidoIOC")
+            );
+
+
+        const contenedor =
+            document.getElementById(
+                "confirmation-products"
+            );
+
+
+        const totalElemento =
+            document.getElementById(
+                "confirmation-total"
+            );
+
+
+        const numeroElemento =
+            document.getElementById(
+                "order-number"
+            );
+
+
+        const fechaElemento =
+            document.getElementById(
+                "order-date"
+            );
+
+
+        const pagoElemento =
+            document.getElementById(
+                "order-payment"
+            );
+
+
+        /* =====================================
+           SI NO EXISTE PEDIDO
+        ===================================== */
+
+        if (!pedido) {
+
+            contenedor.innerHTML = `
+
+                <div style="
+                    padding:30px;
+                    text-align:center;
+                    color:#666;
+                ">
+
+                    No hay información de pedido
+                    disponible.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* =====================================
+           NÚMERO DE PEDIDO
+        ===================================== */
+
+        let numeroPedido =
+            pedido.numeroPedido;
+
+
+        if (!numeroPedido) {
+
+            numeroPedido =
+                "IOC-" +
+                Math.floor(
+                    100000 +
+                    Math.random() * 900000
+                );
+
+            pedido.numeroPedido =
+                numeroPedido;
+
+
+            localStorage.setItem(
+                "pedidoIOC",
+                JSON.stringify(pedido)
+            );
+
+        }
+
+
+        numeroElemento.textContent =
+            numeroPedido;
+
+
+        /* =====================================
+           FECHA
+        ===================================== */
+
+        const fecha =
+            new Date();
+
+
+        fechaElemento.textContent =
+            fecha.toLocaleDateString(
+                "es-HN",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+
+        /* =====================================
+           MÉTODO DE PAGO
+        ===================================== */
+
+        pagoElemento.textContent =
+            pedido.cliente &&
+            pedido.cliente.pago
+                ? pedido.cliente.pago
+                : "Por confirmar";
+
+
+        /* =====================================
+           PRODUCTOS
+        ===================================== */
+
+        let total = 0;
+
+
+        pedido.productos.forEach(
+            function(producto) {
+
+
+                const subtotal =
+                    producto.precio *
+                    producto.cantidad;
+
+
+                total += subtotal;
+
+
+                const imagen =
+                    producto.imagen ||
+                    obtenerImagenProducto(
+                        producto.nombre
+                    );
+
+
+                contenedor.innerHTML += `
+
+                    <div class="confirmation-product">
+
+
+                        <div class="confirmation-product-image">
+
+                            <img
+                                src="${imagen}"
+                                alt="${producto.nombre}">
+
+                        </div>
+
+
+                        <div class="confirmation-product-info">
+
+                            <strong>
+                                ${producto.nombre}
+                            </strong>
+
+                            <p>
+                                Cantidad:
+                                ${producto.cantidad}
+                            </p>
+
+                        </div>
+
+
+                        <div class="confirmation-product-price">
+
+                            L ${subtotal.toLocaleString()}
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        /* =====================================
+           TOTAL
+        ===================================== */
+
+        totalElemento.textContent =
+            "L " +
+            total.toLocaleString();
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

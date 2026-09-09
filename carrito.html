@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carrito | Inversiones Ortega Chinchilla</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           PÁGINA DEL CARRITO
+        ========================================= */
+
+        .cart-section {
+            padding: 70px 20px 90px;
+            background: #ffffff;
+            min-height: 55vh;
+        }
+
+        .cart-page-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+
+        .cart-page-header span {
+            color: #d99600;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        .cart-page-header h1 {
+            color: #111111;
+            font-size: clamp(34px, 5vw, 48px);
+            line-height: 1.15;
+            margin: 10px 0;
+        }
+
+        .cart-page-header p {
+            color: #666666;
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           PRODUCTOS DEL CARRITO
+        ========================================= */
+
+        #cart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto auto;
+            align-items: center;
+            gap: 22px;
+            padding: 20px;
+            margin-bottom: 16px;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 15px;
+            box-shadow: 0 7px 22px rgba(0,0,0,0.05);
+            transition: 0.3s ease;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.09);
+        }
+
+        .cart-product-image {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .cart-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cart-item-info h3 {
+            color: #111111;
+            font-size: 17px;
+            line-height: 1.3;
+            margin-bottom: 7px;
+        }
+
+        .cart-item-info p {
+            color: #666666;
+            font-size: 13px;
+            margin: 0;
+        }
+
+
+        /* =========================================
+           CANTIDAD
+        ========================================= */
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-quantity button {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #dddddd;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #111111;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .cart-quantity button:hover {
+            background: #f5c400;
+            border-color: #f5c400;
+        }
+
+        .cart-quantity span {
+            min-width: 25px;
+            text-align: center;
+            color: #111111;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           SUBTOTAL
+        ========================================= */
+
+        .cart-subtotal {
+            min-width: 115px;
+            text-align: right;
+        }
+
+        .cart-subtotal strong {
+            color: #111111;
+            font-size: 17px;
+        }
+
+
+        /* =========================================
+           ELIMINAR
+        ========================================= */
+
+        .cart-delete {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 8px;
+            background: #f3f3f3;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.25s ease;
+        }
+
+        .cart-delete:hover {
+            background: #111111;
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================
+           CARRITO VACÍO
+        ========================================= */
+
+        .empty-cart {
+            max-width: 650px;
+            margin: 20px auto;
+            padding: 55px 25px;
+            text-align: center;
+            background: #f7f7f7;
+            border-radius: 18px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .empty-cart-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            display: grid;
+            place-items: center;
+            background: #111111;
+            color: #f5c400;
+            border-radius: 50%;
+            font-size: 34px;
+        }
+
+        .empty-cart h2 {
+            color: #111111;
+            margin-bottom: 10px;
+        }
+
+        .empty-cart p {
+            color: #666666;
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================================
+           RESUMEN
+        ========================================= */
+
+        .cart-summary {
+            max-width: 1000px;
+            margin: 30px auto 0;
+            padding: 25px;
+            background: #111111;
+            color: #ffffff;
+            border-radius: 15px;
+        }
+
+        .cart-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333333;
+        }
+
+        .cart-total span {
+            font-size: 16px;
+            color: #cccccc;
+        }
+
+        .cart-total strong {
+            color: #f5c400;
+            font-size: 28px;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-actions a,
+        .cart-actions button {
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           RESPONSIVE TABLET
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .cart-item {
+                grid-template-columns: 90px 1fr auto;
+                gap: 18px;
+            }
+
+            .cart-product-image {
+                width: 90px;
+                height: 90px;
+            }
+
+            .cart-quantity {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .cart-subtotal {
+                grid-column: 3;
+                grid-row: 1 / span 2;
+            }
+
+            .cart-delete {
+                grid-column: 3;
+                grid-row: 2;
+                justify-self: end;
+            }
+        }
+
+
+        /* =========================================
+           RESPONSIVE CELULAR
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .cart-section {
+                padding: 55px 15px 70px;
+            }
+
+            .cart-page-header h1 {
+                font-size: 34px;
+            }
+
+            .cart-page-header p {
+                font-size: 14px;
+            }
+
+            .cart-item {
+                grid-template-columns: 75px 1fr;
+                gap: 15px;
+                padding: 16px;
+            }
+
+            .cart-product-image {
+                width: 75px;
+                height: 75px;
+            }
+
+            .cart-item-info h3 {
+                font-size: 15px;
+            }
+
+            .cart-item-info p {
+                font-size: 12px;
+            }
+
+            .cart-quantity {
+                grid-column: 1 / -1;
+                justify-self: start;
+            }
+
+            .cart-subtotal {
+                grid-column: 1;
+                grid-row: auto;
+                text-align: left;
+                min-width: auto;
+            }
+
+            .cart-delete {
+                grid-column: 2;
+                grid-row: auto;
+                justify-self: end;
+            }
+
+            .cart-summary {
+                padding: 20px;
+            }
+
+            .cart-total strong {
+                font-size: 23px;
+            }
+
+            .cart-actions {
+                flex-direction: column;
+            }
+
+            .cart-actions a,
+            .cart-actions button {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+
+        /* =========================================
+           CELULAR PEQUEÑO
+        ========================================= */
+
+        @media (max-width: 400px) {
+
+            .cart-item {
+                padding: 14px;
+            }
+
+            .cart-item-info h3 {
+                font-size: 14px;
+            }
+
+            .cart-total {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla">
+
+            <span>
+                Inversiones Ortega Chinchilla
+            </span>
+
+        </a>
+
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menú">
+
+            ☰
+
+        </button>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+
+            </a>
+            
+            <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html" class="cart-link">
+                🛒 Carrito
+                (<span id="cart-count">0</span>)
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     CONTENIDO
+========================================= -->
+
+<main>
+
+    <section class="cart-section">
+
+        <div class="container">
+
+
+            <div class="cart-page-header">
+
+                <span>
+                    TU COMPRA
+                </span>
+
+                <h1>
+                    Tu carrito
+                </h1>
+
+                <p>
+                    Revisá los productos que seleccionaste
+                    antes de continuar con tu compra.
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCTOS -->
+            <div id="cart-container">
+
+                <!-- JavaScript muestra aquí los productos -->
+
+            </div>
+
+
+            <!-- RESUMEN -->
+            <div
+                id="cart-summary"
+                class="cart-summary">
+
+                <div class="cart-total">
+
+                    <span>
+                        Total de la compra
+                    </span>
+
+                    <strong id="cart-total">
+                        L 0
+                    </strong>
+
+                </div>
+
+
+                <div class="cart-actions">
+
+                    <a
+                        href="productos.html"
+                        class="btn-secondary">
+
+                        ← Continuar comprando
+
+                    </a>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="irAlCheckout()">
+
+                        Finalizar compra →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-column footer-about">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla"
+                class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y mecánica general
+                para el cuidado y mantenimiento de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes</strong><br>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado</strong><br>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo</strong><br>
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     WHATSAPP
+========================================= -->
+
+<a
+    href="#"
+    class="whatsapp-button"
+    aria-label="Contactar por WhatsApp">
+
+    WhatsApp
+
+</a>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

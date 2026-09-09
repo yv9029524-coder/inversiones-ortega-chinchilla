@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nosotros | Inversiones Ortega Chinchilla</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           PÁGINA NOSOTROS
+        ========================================= */
+
+        .about-hero {
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #171717, #2b2b2b);
+            color: white;
+        }
+
+        .about-hero-content {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            margin: 15px 0;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .about-photo-box {
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .about-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-section {
+            padding: 70px 20px;
+        }
+
+        .about-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .about-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-intro h2 {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .about-intro p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 17px;
+        }
+
+        .about-info-box {
+            background: #f5f5f5;
+            border-left: 5px solid #f5c400;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .about-info-box p {
+            margin: 12px 0;
+        }
+
+        .mission-grid {
+            max-width: 1100px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .mission-card {
+            padding: 35px;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid #f5c400;
+        }
+
+        .mission-card h3 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .mission-card p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .values-section {
+            background: #f7f7f7;
+        }
+
+        .values-grid {
+            max-width: 1100px;
+            margin: 45px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .value-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .value-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .location-box {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .location-card {
+            padding: 30px;
+            background: #171717;
+            color: white;
+            border-radius: 16px;
+        }
+
+        .location-card h3 {
+            color: #f5c400;
+            margin-bottom: 20px;
+        }
+
+        .location-card p {
+            line-height: 1.7;
+            margin: 10px 0;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .about-hero-content,
+            .about-intro,
+            .mission-grid,
+            .location-box {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-hero h1 {
+                font-size: 36px;
+            }
+
+            .about-photo-box {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-hero {
+                padding: 50px 20px;
+            }
+
+            .about-hero h1 {
+                font-size: 32px;
+            }
+
+            .about-hero p {
+                font-size: 16px;
+            }
+
+            .about-photo-box {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+
+            <img src="img/logo/logo.jpg"
+                 alt="Inversiones Ortega Chinchilla">
+
+            <span>Inversiones Ortega Chinchilla</span>
+
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle">
+            ☰
+        </button>
+
+        <nav class="nav">
+
+            <a href="index.html">Inicio</a>
+
+            <a href="productos.html">Productos</a>
+
+            <a href="servicios.html">Servicios</a>
+
+            <a href="nosotros.html" class="active">Nosotros</a>
+            
+            <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">Contacto</a>
+
+            <a href="carrito.html">
+                Carrito 🛒
+                <span id="cart-count">0</span>
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="about-hero">
+
+    <div class="about-hero-content">
+
+        <div>
+
+            <span class="section-tag">
+                CONÓCENOS
+            </span>
+
+            <h1>
+                Inversiones Ortega Chinchilla
+            </h1>
+
+            <p>
+                Somos un negocio dedicado a brindar productos y servicios
+                para el mantenimiento, cuidado y funcionamiento de vehículos,
+                ofreciendo atención personalizada y precios competitivos.
+            </p>
+
+        </div>
+
+
+        <div class="about-photo-box">
+
+            <img src="img/servicios/cambio-aceite.jpg"
+                 alt="Servicio de cambio de aceite">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SOBRE NOSOTROS
+========================================= -->
+
+<section class="about-section">
+
+    <div class="about-content">
+
+        <div class="about-intro">
+
+            <div>
+
+                <span class="section-tag">
+                    SOBRE NOSOTROS
+                </span>
+
+                <h2>
+                    Soluciones para el cuidado de tu vehículo
+                </h2>
+
+                <p>
+                    Inversiones Ortega Chinchilla ofrece productos y servicios
+                    relacionados con lubricantes, cambio de aceite y mecánica
+                    general.
+                </p>
+
+                <p>
+                    Nuestro objetivo es brindar una atención cercana a nuestros
+                    clientes, ofreciendo alternativas que respondan a las
+                    necesidades de mantenimiento de sus vehículos.
+                </p>
+
+            </div>
+
+
+            <div class="about-info-box">
+
+                <p>
+                    <strong>📍 Ubicación:</strong>
+                </p>
+
+                <p>
+                    2.ª calle, primera y segunda avenida,
+                    esquina opuesta al Ferrocarril Nacional,
+                    San Pedro Sula.
+                </p>
+
+                <p>
+                    <strong>📞 Teléfono:</strong>
+                    3363-3491
+                </p>
+
+                <p>
+                    <strong>📧 Correo:</strong>
+                    inversionesortegachinchilla@gmail.com
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     MISIÓN Y VISIÓN
+========================================= -->
+
+<section class="about-section values-section">
+
+    <div class="about-content">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                NUESTRO PROPÓSITO
+            </span>
+
+            <h2>
+                Misión y visión
+            </h2>
+
+        </div>
+
+
+        <div class="mission-grid">
+
+            <article class="mission-card">
+
+                <h3>
+                    🎯 Misión
+                </h3>
+
+                <p>
+                    Brindar productos y servicios automotrices con atención
+                    personalizada, precios competitivos y soluciones
+                    orientadas a las necesidades de nuestros clientes,
+                    contribuyendo al cuidado y mantenimiento de sus vehículos.
+                </p>
+
+            </article>
+
+
+            <article class="mission-card">
+
+                <h3>
+                    👁️ Visión
+                </h3>
+
+                <p>
+                    Ser un negocio reconocido en San Pedro Sula por la
+                    calidad de nuestra atención, la variedad de nuestros
+                    productos y la confianza que generamos en nuestros clientes.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     VALORES
+========================================= -->
+
+<section class="about-section">
+
+    <div class="about-content">
+
+        <div class="section-heading">
+
+            <span class="section-tag">
+                LO QUE NOS REPRESENTA
+            </span>
+
+            <h2>
+                Nuestros valores
+            </h2>
+
+        </div>
+
+
+        <div class="values-grid">
+
+            <article class="value-card">
+
+                <div class="value-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    Atención
+                </h3>
+
+                <p>
+                    Buscamos brindar una atención cercana y personalizada.
+                </p>
+
+            </article>
+
+
+            <article class="value-card">
+
+                <div class="value-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Calidad
+                </h3>
+
+                <p>
+                    Procuramos ofrecer productos y servicios que respondan
+                    a las necesidades del cliente.
+                </p>
+
+            </article>
+
+
+            <article class="value-card">
+
+                <div class="value-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Precios
+                </h3>
+
+                <p>
+                    Ofrecemos precios competitivos para nuestros clientes.
+                </p>
+
+            </article>
+
+
+            <article class="value-card">
+
+                <div class="value-icon">
+                    🚗
+                </div>
+
+                <h3>
+                    Compromiso
+                </h3>
+
+                <p>
+                    Nos enfocamos en brindar soluciones para el cuidado
+                    y mantenimiento de los vehículos.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     UBICACIÓN Y HORARIOS
+========================================= -->
+
+<section class="about-section values-section">
+
+    <div class="location-box">
+
+        <div class="location-card">
+
+            <h3>
+                📍 Visítanos
+            </h3>
+
+            <p>
+                2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+            <p>
+                Contamos con atención presencial para nuestros clientes.
+            </p>
+
+        </div>
+
+
+        <div class="location-card">
+
+            <h3>
+                🕐 Horarios
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes:</strong>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado:</strong>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo:</strong>
+                Atención únicamente con reserva.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            ¿Necesitás productos o servicios para tu vehículo?
+        </h2>
+
+        <p>
+            Conocé nuestro catálogo o comunicate con nosotros.
+        </p>
+
+        <a href="productos.html" class="btn btn-primary">
+            Ver productos
+        </a>
+
+        <a href="contacto.html" class="btn btn-light">
+            Contactarnos
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+     PIE DE PÁGINA
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <!-- INFORMACIÓN -->
+
+        <div class="footer-column footer-about">
+
+            <img src="img/logo/logo.jpg"
+                 alt="Inversiones Ortega Chinchilla"
+                 class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y mecánica general
+                para el cuidado y mantenimiento de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <!-- ENLACES -->
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <!-- CONTACTO -->
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <!-- HORARIOS -->
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes</strong><br>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado</strong><br>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo</strong><br>
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

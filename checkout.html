@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Finalizar compra | Inversiones Ortega Chinchilla
+    </title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <style>
+
+        /* =========================================
+           CHECKOUT
+        ========================================= */
+
+        .checkout-section {
+
+            padding: 70px 20px 90px;
+
+            background: #f5f5f5;
+
+            min-height: 70vh;
+
+        }
+
+
+        .checkout-header {
+
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: 0 auto 40px;
+
+        }
+
+
+        .checkout-header span {
+
+            color: #d99600;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .checkout-header h1 {
+
+            color: #111111;
+
+            font-size: clamp(34px, 5vw, 48px);
+
+            margin: 10px 0;
+
+        }
+
+
+        .checkout-header p {
+
+            color: #666666;
+
+            font-size: 15px;
+
+        }
+
+
+        .checkout-grid {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr .85fr;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+
+        /* =========================================
+           FORMULARIO
+        ========================================= */
+
+        .checkout-form {
+
+            background: #ffffff;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5e5e5;
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,.07);
+
+        }
+
+
+        .checkout-form h2,
+        .checkout-summary h2 {
+
+            color: #111111;
+
+            font-size: 22px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #222222;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #222222;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: .25s ease;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+
+            border-color: #f5c400;
+
+            box-shadow:
+                0 0 0 3px rgba(245,196,0,.12);
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+        /* =========================================
+           MÉTODOS DE PAGO
+        ========================================= */
+
+        .payment-title {
+
+            margin-top: 25px;
+
+            margin-bottom: 12px;
+
+            color: #111111;
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+        }
+
+
+        .payment-info {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .payment-box {
+
+            padding: 13px 8px;
+
+            text-align: center;
+
+            background: #f7f7f7;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: #333333;
+
+        }
+
+
+        .checkout-button {
+
+            width: 100%;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           RESUMEN
+        ========================================= */
+
+        .checkout-summary {
+
+            background: #111111;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,.12);
+
+        }
+
+
+        .checkout-summary h2 {
+
+            color: #f5c400;
+
+        }
+
+
+        #checkout-products {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+
+        }
+
+
+        .checkout-product {
+
+            display: grid;
+
+            grid-template-columns:
+                60px 1fr auto;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding-bottom: 14px;
+
+            border-bottom:
+                1px solid #333333;
+
+        }
+
+
+        .checkout-product-image {
+
+            width: 60px;
+
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #ffffff;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+        }
+
+
+        .checkout-product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        .checkout-product-info strong {
+
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            line-height: 1.35;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .checkout-product-info p {
+
+            margin: 0;
+
+            color: #aaaaaa;
+
+            font-size: 12px;
+
+        }
+
+
+        .checkout-product-price {
+
+            color: #f5c400;
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =========================================
+           TOTAL
+        ========================================= */
+
+        .checkout-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 22px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #444444;
+
+        }
+
+
+        .checkout-total span {
+
+            color: #cccccc;
+
+            font-size: 15px;
+
+        }
+
+
+        .checkout-total strong {
+
+            color: #f5c400;
+
+            font-size: 29px;
+
+        }
+
+
+        /* =========================================
+           AVISOS
+        ========================================= */
+
+        .checkout-notice {
+
+            margin-top: 18px;
+
+            padding: 14px;
+
+            background: #fff8df;
+
+            border: 1px solid #e8cf70;
+
+            border-radius: 9px;
+
+            color: #555555;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .checkout-secure {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            color: #999999;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================================
+           CARRITO VACÍO
+        ========================================= */
+
+        .checkout-empty {
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            padding: 45px 25px;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+        }
+
+
+        .checkout-empty h2 {
+
+            color: #111111;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .checkout-empty p {
+
+            color: #666666;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================================
+           CELULAR
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .checkout-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .checkout-section {
+
+                padding: 50px 15px 70px;
+
+            }
+
+
+            .checkout-form,
+            .checkout-summary {
+
+                padding: 23px 18px;
+
+            }
+
+
+            .payment-info {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .checkout-product {
+
+                grid-template-columns:
+                    55px 1fr;
+
+            }
+
+
+            .checkout-product-price {
+
+                grid-column: 2;
+
+            }
+
+
+            .checkout-total {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container header-content">
+
+
+        <a href="index.html"
+           class="logo">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla">
+
+        </a>
+
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menú">
+
+            ☰
+
+        </button>
+
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html"
+               class="cart-link">
+
+                🛒 Carrito
+
+                <span id="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     CHECKOUT
+========================================= -->
+
+<main>
+
+<section class="checkout-section">
+
+    <div class="container">
+
+
+        <div class="checkout-header">
+
+            <span>
+                COMPRA SEGURA
+            </span>
+
+            <h1>
+                Finalizar compra
+            </h1>
+
+            <p>
+                Completá tus datos y revisá tu pedido
+                antes de confirmar.
+            </p>
+
+        </div>
+
+
+        <div id="checkout-content"
+             class="checkout-grid">
+
+
+            <!-- =================================
+                 FORMULARIO
+            ================================== -->
+
+            <div class="checkout-form">
+
+                <h2>
+                    Datos del cliente
+                </h2>
+
+
+                <form id="checkout-form">
+
+
+                    <div class="form-group">
+
+                        <label for="nombre">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Escribí tu nombre completo"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="telefono">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="Ej. 3363-3491"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="correo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            placeholder="correo@ejemplo.com"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="direccion">
+                            Dirección
+                        </label>
+
+                        <textarea
+                            id="direccion"
+                            name="direccion"
+                            placeholder="Escribí tu dirección"
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="pago">
+                            Método de pago
+                        </label>
+
+                        <select
+                            id="pago"
+                            name="pago"
+                            required>
+
+                            <option value="">
+                                Seleccioná un método
+                            </option>
+
+                            <option value="Efectivo">
+                                💵 Efectivo
+                            </option>
+
+                            <option value="Transferencia">
+                                🏦 Transferencia bancaria
+                            </option>
+
+                            <option value="POS">
+                                💳 POS / Tarjeta
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="payment-title">
+                        Métodos disponibles
+                    </div>
+
+
+                    <div class="payment-info">
+
+                        <div class="payment-box">
+                            💵 Efectivo
+                        </div>
+
+                        <div class="payment-box">
+                            🏦 Transferencia
+                        </div>
+
+                        <div class="payment-box">
+                            💳 POS
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary checkout-button">
+
+                        ✓ Confirmar pedido
+
+                    </button>
+
+
+                </form>
+
+
+                <div class="checkout-notice">
+
+                    ⚠️ <strong>Proceso simulado:</strong>
+                    esta tienda funciona como prototipo académico.
+                    No se realizará ningún cobro real.
+
+                </div>
+
+
+                <div class="checkout-secure">
+
+                    🔒 Tus datos se utilizan únicamente
+                    para procesar este pedido de prueba.
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 RESUMEN
+            ================================== -->
+
+            <div class="checkout-summary">
+
+                <h2>
+                    🧾 Resumen de tu pedido
+                </h2>
+
+
+                <div id="checkout-products">
+
+                    <!-- JavaScript -->
+
+                </div>
+
+
+                <div class="checkout-total">
+
+                    <span>
+                        Total de la compra
+                    </span>
+
+                    <strong id="checkout-total">
+                        L 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-column footer-about">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla"
+                class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y mecánica
+                general para el cuidado y mantenimiento
+                de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">Inicio</a>
+
+            <a href="productos.html">Productos</a>
+
+            <a href="servicios.html">Servicios</a>
+
+            <a href="nosotros.html">Nosotros</a>
+
+            <a href="contacto.html">Contacto</a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>Lunes a viernes</strong><br>
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>Sábado</strong><br>
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>Domingo</strong><br>
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©️ 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        const carrito =
+            obtenerCarrito();
+
+
+        const contenido =
+            document.getElementById(
+                "checkout-content"
+            );
+
+
+        const contenedor =
+            document.getElementById(
+                "checkout-products"
+            );
+
+
+        const totalElemento =
+            document.getElementById(
+                "checkout-total"
+            );
+
+
+        /* =====================================
+           VALIDAR CARRITO
+        ===================================== */
+
+        if (carrito.length === 0) {
+
+            contenido.innerHTML = `
+
+                <div class="checkout-empty">
+
+                    <h2>
+                        🛒 Tu carrito está vacío
+                    </h2>
+
+                    <p>
+                        Agregá al menos un producto
+                        antes de finalizar la compra.
+                    </p>
+
+                    <a
+                        href="productos.html"
+                        class="btn-primary">
+
+                        Ver productos
+
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* =====================================
+           MOSTRAR PRODUCTOS
+        ===================================== */
+
+        let total = 0;
+
+
+        carrito.forEach(
+            function(producto) {
+
+
+                const subtotal =
+                    producto.precio *
+                    producto.cantidad;
+
+
+                total += subtotal;
+
+
+                const imagen =
+                    producto.imagen ||
+                    obtenerImagenProducto(
+                        producto.nombre
+                    );
+
+
+                contenedor.innerHTML += `
+
+                    <div class="checkout-product">
+
+                        <div class="checkout-product-image">
+
+                            <img
+                                src="${imagen}"
+                                alt="${producto.nombre}">
+
+                        </div>
+
+
+                        <div class="checkout-product-info">
+
+                            <strong>
+                                ${producto.nombre}
+                            </strong>
+
+                            <p>
+                                Cantidad:
+                                ${producto.cantidad}
+                            </p>
+
+                        </div>
+
+
+                        <div class="checkout-product-price">
+
+                            L ${subtotal.toLocaleString()}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        totalElemento.textContent =
+            "L " +
+            total.toLocaleString();
+
+
+        /* =====================================
+           CONFIRMAR PEDIDO
+        ===================================== */
+
+        const formulario =
+            document.getElementById(
+                "checkout-form"
+            );
+
+
+        formulario.addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                const numeroPedido =
+                    "IOC-" +
+                    Math.floor(
+                        100000 +
+                        Math.random() * 900000
+                    );
+
+
+                const pedido = {
+
+                    numeroPedido:
+                        numeroPedido,
+
+                    fecha:
+                        new Date().toLocaleString(
+                            "es-HN"
+                        ),
+
+                    cliente: {
+
+                        nombre:
+                            document.getElementById(
+                                "nombre"
+                            ).value,
+
+                        telefono:
+                            document.getElementById(
+                                "telefono"
+                            ).value,
+
+                        correo:
+                            document.getElementById(
+                                "correo"
+                            ).value,
+
+                        direccion:
+                            document.getElementById(
+                                "direccion"
+                            ).value,
+
+                        pago:
+                            document.getElementById(
+                                "pago"
+                            ).value
+
+                    },
+
+                    productos:
+                        carrito,
+
+                    total:
+                        total
+
+                };
+
+
+                localStorage.setItem(
+                    "pedidoIOC",
+                    JSON.stringify(pedido)
+                );
+
+
+                localStorage.removeItem(
+                    "carritoIOC"
+                );
+
+
+                window.location.href =
+                    "confirmacion.html";
+
+            }
+
+        );
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

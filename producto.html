@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Detalle del producto | Inversiones Ortega Chinchilla
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        .product-detail-page {
+            padding: 90px 0;
+            background: #f5f5f5;
+            min-height: 70vh;
+        }
+
+        .product-detail {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,.10);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .product-detail-image {
+            min-height: 500px;
+            padding: 40px;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-detail-image img {
+            width: 100%;
+            height: 430px;
+            object-fit: contain;
+        }
+
+        .product-detail-info {
+            padding: 55px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-detail-category {
+            display: inline-block;
+            color: #d99600;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .product-detail-info h1 {
+            color: #111111;
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .product-detail-description {
+            color: #666666;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .product-detail-price {
+            font-size: 30px;
+            font-weight: 900;
+            color: #111111;
+            margin-bottom: 25px;
+        }
+
+        .product-detail-price span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #777777;
+        }
+
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .quantity-box label {
+            font-size: 14px;
+            font-weight: 800;
+            color: #222222;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .quantity-controls button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #eeeeee;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .quantity-controls button:hover {
+            background: #f5b400;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            height: 40px;
+            border: none;
+            border-left: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            outline: none;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .detail-actions a,
+        .detail-actions button {
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .detail-message {
+            margin-top: 18px;
+            padding: 12px 15px;
+            background: #eef9f0;
+            color: #257238;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            display: none;
+        }
+
+        .detail-message.show {
+            display: block;
+        }
+
+        @media (max-width: 800px) {
+
+            .product-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .product-detail-image {
+                min-height: 350px;
+                padding: 25px;
+            }
+
+            .product-detail-image img {
+                height: 320px;
+            }
+
+            .product-detail-info {
+                padding: 40px 25px;
+            }
+
+            .product-detail-info h1 {
+                font-size: 30px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .product-detail-page {
+                padding: 50px 0;
+            }
+
+            .product-detail-image {
+                min-height: 300px;
+            }
+
+            .product-detail-image img {
+                height: 270px;
+            }
+
+            .product-detail-info {
+                padding: 30px 20px;
+            }
+
+            .product-detail-info h1 {
+                font-size: 26px;
+            }
+
+            .product-detail-price {
+                font-size: 26px;
+            }
+
+            .detail-actions {
+                flex-direction: column;
+            }
+
+            .detail-actions a,
+            .detail-actions button {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     ENCABEZADO
+========================================= -->
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla">
+
+        </a>
+
+        <button
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-label="Abrir menú">
+
+            ☰
+
+        </button>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+                <a href="resenas.html">Reseñas</a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a
+                href="carrito.html"
+                class="cart-link">
+
+                🛒 Carrito
+
+                <span id="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     DETALLE DEL PRODUCTO
+========================================= -->
+
+<section class="product-detail-page">
+
+    <div class="container">
+
+        <div class="product-detail">
+
+
+            <!-- IMAGEN -->
+
+            <div class="product-detail-image">
+
+                <img
+                    id="producto-imagen"
+                    src=""
+                    alt="Producto">
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="product-detail-info">
+
+                <span
+                    id="producto-categoria"
+                    class="product-detail-category">
+                </span>
+
+
+                <h1 id="producto-nombre">
+                    Producto
+                </h1>
+
+
+                <p
+                    id="producto-descripcion"
+                    class="product-detail-description">
+                </p>
+
+
+                <div class="product-detail-price">
+
+                    <span>
+                        Precio
+                    </span>
+
+                    <br>
+
+                    <strong id="producto-precio">
+                        L 0
+                    </strong>
+
+                </div>
+
+
+                <!-- CANTIDAD -->
+
+                <div class="quantity-box">
+
+                    <label for="cantidad">
+                        Cantidad:
+                    </label>
+
+                    <div class="quantity-controls">
+
+                        <button
+                            type="button"
+                            onclick="cambiarCantidadDetalle(-1)">
+
+                            −
+
+                        </button>
+
+                        <input
+                            type="number"
+                            id="cantidad"
+                            value="1"
+                            min="1"
+                            readonly>
+
+                        <button
+                            type="button"
+                            onclick="cambiarCantidadDetalle(1)">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="detail-actions">
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="agregarProductoDetalle()">
+
+                        🛒 Agregar al carrito
+
+                    </button>
+
+                    <a
+                        href="productos.html"
+                        class="btn-secondary">
+
+                        ← Volver a productos
+
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="detail-message"
+                    class="detail-message">
+
+                    ✓ Producto agregado al carrito.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     LLAMADO A LA ACCIÓN
+========================================= -->
+
+<section class="cta">
+
+    <div class="container cta-content">
+
+        <div>
+
+            <span>
+                ¿NECESITÁS AYUDA?
+            </span>
+
+            <h2>
+                Te ayudamos a encontrar lo que tu vehículo necesita.
+            </h2>
+
+            <p>
+                Consultá nuestros productos y servicios.
+            </p>
+
+        </div>
+
+        <a
+            href="contacto.html"
+            class="btn-primary">
+
+            Contactar
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     PIE DE PÁGINA
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-column footer-about">
+
+            <img
+                src="img/logo/logo.jpg"
+                alt="Inversiones Ortega Chinchilla"
+                class="footer-logo">
+
+            <h3>
+                Inversiones Ortega Chinchilla
+            </h3>
+
+            <p>
+                Lubricantes, cambio de aceite y mecánica
+                general para el cuidado y mantenimiento
+                de tu vehículo.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Enlaces rápidos
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="productos.html">
+                Productos
+            </a>
+
+            <a href="servicios.html">
+                Servicios
+            </a>
+
+            <a href="nosotros.html">
+                Nosotros
+            </a>
+
+            <a href="contacto.html">
+                Contacto
+            </a>
+
+            <a href="carrito.html">
+                🛒 Carrito
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                📞 <strong>3363-3491</strong>
+            </p>
+
+            <p>
+                ✉ inversionesortegachinchilla@gmail.com
+            </p>
+
+            <p>
+                📍 2.ª calle, primera y segunda avenida,
+                esquina opuesta al Ferrocarril Nacional,
+                San Pedro Sula.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Horario de atención
+            </h3>
+
+            <p>
+                <strong>
+                    Lunes a viernes
+                </strong>
+
+                <br>
+
+                8:00 a.m. – 5:00 p.m.
+            </p>
+
+            <p>
+                <strong>
+                    Sábado
+                </strong>
+
+                <br>
+
+                8:00 a.m. – 4:00 p.m.
+            </p>
+
+            <p>
+                <strong>
+                    Domingo
+                </strong>
+
+                <br>
+
+                Solo con reservación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <a href="contacto.html">
+            Contáctanos
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©️ 2026 Inversiones Ortega Chinchilla.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* =========================================
+   PRODUCTOS
+========================================= */
+
+const productos = {
+
+    "Galón de aceite de motor": {
+
+        nombre: "Galón de aceite de motor",
+
+        categoria: "Lubricantes",
+
+        precio: 1800,
+
+        imagen: "img/productos/aceite-motor.jpg",
+
+        descripcion:
+            "Aceite de motor Mobil Special 20W-50, presentación de 1 galón, ideal para el mantenimiento y cuidado del motor del vehículo."
+
+    },
+
+
+    "Filtro de aceite de motor": {
+
+        nombre: "Filtro de aceite de motor",
+
+        categoria: "Filtros",
+
+        precio: 200,
+
+        imagen: "img/productos/filtro-aceite.jpg",
+
+        descripcion:
+            "Filtro Bosch O 1039 para el mantenimiento del sistema de lubricación del vehículo."
+
+    },
+
+
+    "Filtro de aire acondicionado": {
+
+        nombre: "Filtro de aire acondicionado",
+
+        categoria: "Filtros",
+
+        precio: 320,
+
+        imagen: "img/productos/filtro-aire-acondicionado.jpg",
+
+        descripcion:
+            "Filtro para el sistema de aire acondicionado del vehículo."
+
+    },
+
+
+    "Filtro de diésel": {
+
+        nombre: "Filtro de diésel",
+
+        categoria: "Filtros",
+
+        precio: 300,
+
+        imagen: "img/productos/filtro-diesel.jpg",
+
+        descripcion:
+            "Filtro para sistemas de combustible en vehículos diésel."
+
+    },
+
+
+    "Galón de aceite de transmisión automática": {
+
+        nombre:
+            "Galón de aceite de transmisión automática",
+
+        categoria:
+            "Transmisión",
+
+        precio:
+            1600,
+
+        imagen:
+            "img/productos/aceite-transmision.jpg",
+
+        descripcion:
+            "Aceite Valvoline ATF para el mantenimiento de transmisiones automáticas. Presentación de galón."
+
+    },
+
+
+    "¼ de aceite de motor": {
+
+        nombre:
+            "¼ de aceite de motor",
+
+        categoria:
+            "Lubricantes",
+
+        precio:
+            380,
+
+        imagen:
+            "img/productos/aceite-cuarto.jpg",
+
+        descripcion:
+            "Aceite Total Quartz 9000 5W-40, presentación de 946 ml, para el mantenimiento y cuidado del motor."
+
+    }
+
+};
+
+
+/* =========================================
+   OBTENER PRODUCTO
+========================================= */
+
+const parametros =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const nombreProducto =
+    parametros.get("producto");
+
+
+let productoSeleccionado =
+    productos[nombreProducto];
+
+
+if (!productoSeleccionado) {
+
+    productoSeleccionado =
+        productos["Galón de aceite de motor"];
+
+}
+
+
+/* =========================================
+   MOSTRAR PRODUCTO
+========================================= */
+
+document.getElementById(
+    "producto-imagen"
+).src =
+    productoSeleccionado.imagen;
+
+
+document.getElementById(
+    "producto-imagen"
+).alt =
+    productoSeleccionado.nombre;
+
+
+document.getElementById(
+    "producto-categoria"
+).textContent =
+    productoSeleccionado.categoria;
+
+
+document.getElementById(
+    "producto-nombre"
+).textContent =
+    productoSeleccionado.nombre;
+
+
+document.getElementById(
+    "producto-descripcion"
+).textContent =
+    productoSeleccionado.descripcion;
+
+
+document.getElementById(
+    "producto-precio"
+).textContent =
+    "L " +
+    productoSeleccionado.precio.toLocaleString();
+
+
+/* =========================================
+   CAMBIAR CANTIDAD
+========================================= */
+
+function cambiarCantidadDetalle(valor) {
+
+    const campo =
+        document.getElementById(
+            "cantidad"
+        );
+
+    let cantidad =
+        parseInt(campo.value) || 1;
+
+    cantidad += valor;
+
+    if (cantidad < 1) {
+
+        cantidad = 1;
+
+    }
+
+    campo.value =
+        cantidad;
+
+}
+
+
+/* =========================================
+   AGREGAR PRODUCTO
+========================================= */
+
+function agregarProductoDetalle() {
+
+    const cantidad =
+        parseInt(
+            document.getElementById(
+                "cantidad"
+            ).value
+        ) || 1;
+
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        agregarAlCarrito(
+            productoSeleccionado.nombre,
+            productoSeleccionado.precio
+        );
+
+    }
+
+
+    const mensaje =
+        document.getElementById(
+            "detail-message"
+        );
+
+    mensaje.classList.add(
+        "show"
+    );
+
+
+    setTimeout(() => {
+
+        mensaje.classList.remove(
+            "show"
+        );
+
+    }, 3000);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
