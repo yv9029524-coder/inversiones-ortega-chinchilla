@@ -2538,3 +2538,182 @@ img {
     }
 
 }
+
+/* =========================================================
+   ANIMACIONES PROFESIONALES - INVERSIONES ORTEGA CHINCHILLA
+   ========================================================= */
+
+/* Entrada general de elementos */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(35px) scale(.98);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+    will-change: opacity, transform;
+}
+
+.reveal-item.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Movimiento suave de tarjetas */
+.product-card,
+.service-card,
+.benefit-card,
+.care-card,
+.review-page-card {
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    will-change: transform;
+}
+
+.product-card:hover,
+.service-card:hover,
+.benefit-card:hover,
+.care-card:hover,
+.review-page-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, .14);
+}
+
+/* Zoom elegante de imágenes */
+.product-card img,
+.service-card img,
+.care-card img,
+.gallery-item img,
+.employee-image img {
+    transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+}
+
+.product-card:hover img,
+.service-card:hover img,
+.care-card:hover img,
+.gallery-item:hover img {
+    transform: scale(1.055);
+}
+
+/* Botones */
+.btn-primary,
+.btn-secondary,
+button[type="submit"],
+.review-submit {
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+button[type="submit"]:hover,
+.review-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    filter: brightness(1.04);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+button[type="submit"]:active,
+.review-submit:active {
+    transform: translateY(0) scale(.98);
+}
+
+/* Hero con entrada elegante */
+.hero h1,
+.hero h2,
+.care-hero h1,
+.care-hero h2 {
+    animation: titleReveal .9s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.hero p,
+.care-hero p {
+    animation: subtitleReveal 1s .15s ease both;
+}
+
+@keyframes titleReveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtitleReveal {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cuidado del vehículo */
+.care-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.care-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: currentColor;
+    transition: width .4s ease;
+}
+
+.care-card:hover::after {
+    width: 100%;
+}
+
+.care-icon {
+    transition: transform .35s ease;
+}
+
+.care-card:hover .care-icon {
+    transform: translateY(-4px) rotate(-4deg) scale(1.08);
+}
+
+/* Empleado destacado */
+.employee-section {
+    position: relative;
+}
+
+.employee-box {
+    animation: employeeFloat 5s ease-in-out infinite;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.employee-box:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, .17);
+}
+
+.employee-image {
+    overflow: hidden;
+}
+
+.employee-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.employee-box:hover .employee-image img {
+    transform: scale(1.045);
+}
+
+@keyframes employeeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* Evita movimiento para usuarios que lo desactivan */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

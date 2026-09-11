@@ -1,19 +1,20 @@
 /* =========================================
    INVERSIONES ORTEGA CHINCHILLA
-   FUNCIONES GENERALES
-========================================= */
+   SCRIPT GENERAL
+   ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     actualizarCarrito();
     mostrarCarrito();
-
+    iniciarMenu();
+    iniciarAnimaciones();
+    iniciarGaleria();
 });
 
 
 /* =========================================
-   OBTENER CARRITO
-========================================= */
+   CARRITO
+   ========================================= */
 
 function obtenerCarrito() {
 
@@ -24,22 +25,30 @@ function obtenerCarrito() {
     carrito.forEach(producto => {
 
         if (!producto.imagen) {
-
-            producto.imagen =
-                obtenerImagenProducto(producto.nombre);
-
+            producto.imagen = obtenerImagenProducto(producto.nombre);
         }
 
     });
 
     return carrito;
+}
 
+
+function guardarCarrito(carrito) {
+
+    localStorage.setItem(
+        "carritoIOC",
+        JSON.stringify(carrito)
+    );
+
+    actualizarCarrito();
+    mostrarCarrito();
 }
 
 
 /* =========================================
-   OBTENER IMAGEN DEL PRODUCTO
-========================================= */
+   IMÁGENES DE PRODUCTOS
+   ========================================= */
 
 function obtenerImagenProducto(nombre) {
 
@@ -66,30 +75,12 @@ function obtenerImagenProducto(nombre) {
     };
 
     return imagenes[nombre] || "";
-
 }
 
 
 /* =========================================
-   GUARDAR CARRITO
-========================================= */
-
-function guardarCarrito(carrito) {
-
-    localStorage.setItem(
-        "carritoIOC",
-        JSON.stringify(carrito)
-    );
-
-    actualizarCarrito();
-    mostrarCarrito();
-
-}
-
-
-/* =========================================
-   NOTIFICACIÓN
-========================================= */
+   NOTIFICACIONES
+   ========================================= */
 
 function mostrarNotificacion(mensaje) {
 
@@ -110,7 +101,6 @@ function mostrarNotificacion(mensaje) {
         `;
 
         document.body.appendChild(notificacion);
-
     }
 
     const texto =
@@ -132,13 +122,12 @@ function mostrarNotificacion(mensaje) {
             notificacion.classList.remove("show");
 
         }, 2500);
-
 }
 
 
 /* =========================================
    AGREGAR PRODUCTO
-========================================= */
+   ========================================= */
 
 function agregarAlCarrito(nombre, precio) {
 
@@ -165,7 +154,6 @@ function agregarAlCarrito(nombre, precio) {
                 obtenerImagenProducto(nombre)
 
         });
-
     }
 
     guardarCarrito(carrito);
@@ -173,13 +161,12 @@ function agregarAlCarrito(nombre, precio) {
     mostrarNotificacion(
         "Producto agregado al carrito"
     );
-
 }
 
 
 /* =========================================
    ELIMINAR PRODUCTO
-========================================= */
+   ========================================= */
 
 function eliminarDelCarrito(nombre) {
 
@@ -192,12 +179,15 @@ function eliminarDelCarrito(nombre) {
 
     guardarCarrito(carrito);
 
+    mostrarNotificacion(
+        "Producto eliminado del carrito"
+    );
 }
 
 
 /* =========================================
    CAMBIAR CANTIDAD
-========================================= */
+   ========================================= */
 
 function cambiarCantidad(nombre, cantidad) {
 
@@ -210,9 +200,7 @@ function cambiarCantidad(nombre, cantidad) {
         );
 
     if (!producto) {
-
         return;
-
     }
 
     producto.cantidad += cantidad;
@@ -220,31 +208,24 @@ function cambiarCantidad(nombre, cantidad) {
     if (producto.cantidad <= 0) {
 
         eliminarDelCarrito(nombre);
-
         return;
-
     }
 
     guardarCarrito(carrito);
-
 }
 
 
 /* =========================================
-   ACTUALIZAR CONTADOR
-========================================= */
+   CONTADOR DEL CARRITO
+   ========================================= */
 
 function actualizarCarrito() {
 
     const contador =
-        document.getElementById(
-            "cart-count"
-        );
+        document.getElementById("cart-count");
 
     if (!contador) {
-
         return;
-
     }
 
     const carrito =
@@ -259,35 +240,26 @@ function actualizarCarrito() {
 
     contador.textContent =
         cantidadTotal;
-
 }
 
 
 /* =========================================
    MOSTRAR CARRITO
-========================================= */
+   ========================================= */
 
 function mostrarCarrito() {
 
     const contenedor =
-        document.getElementById(
-            "cart-container"
-        );
+        document.getElementById("cart-container");
 
     const resumen =
-        document.getElementById(
-            "cart-summary"
-        );
+        document.getElementById("cart-summary");
 
     const totalElemento =
-        document.getElementById(
-            "cart-total"
-        );
+        document.getElementById("cart-total");
 
     if (!contenedor) {
-
         return;
-
     }
 
     const carrito =
@@ -325,14 +297,10 @@ function mostrarCarrito() {
         `;
 
         if (resumen) {
-
-            resumen.style.display =
-                "none";
-
+            resumen.style.display = "none";
         }
 
         return;
-
     }
 
     let total = 0;
@@ -354,7 +322,8 @@ function mostrarCarrito() {
 
                         <img
                             src="${producto.imagen}"
-                            alt="${producto.nombre}">
+                            alt="${producto.nombre}"
+                        >
 
                     </div>
 
@@ -375,10 +344,7 @@ function mostrarCarrito() {
 
                         <button
                             type="button"
-                            onclick="cambiarCantidad(
-                                '${producto.nombre}',
-                                -1
-                            )">
+                            onclick="cambiarCantidad('${producto.nombre}', -1)">
 
                             −
 
@@ -390,10 +356,7 @@ function mostrarCarrito() {
 
                         <button
                             type="button"
-                            onclick="cambiarCantidad(
-                                '${producto.nombre}',
-                                1
-                            )">
+                            onclick="cambiarCantidad('${producto.nombre}', 1)">
 
                             +
 
@@ -412,9 +375,7 @@ function mostrarCarrito() {
                     <button
                         type="button"
                         class="cart-delete"
-                        onclick="eliminarDelCarrito(
-                            '${producto.nombre}'
-                        )">
+                        onclick="eliminarDelCarrito('${producto.nombre}')">
 
                         🗑️
 
@@ -435,17 +396,15 @@ function mostrarCarrito() {
 
     if (resumen) {
 
-        resumen.style.display =
-            "block";
+        resumen.style.display = "block";
 
     }
-
 }
 
 
 /* =========================================
-   IR AL CHECKOUT
-========================================= */
+   CHECKOUT
+   ========================================= */
 
 function irAlCheckout() {
 
@@ -459,158 +418,374 @@ function irAlCheckout() {
         );
 
         return;
-
     }
 
     window.location.href =
         "checkout.html";
-
 }
 
 
 /* =========================================
-   ANIMACIÓN AL HACER SCROLL
-========================================= */
+   ANIMACIONES PROFESIONALES
+   ========================================= */
 
-const elementosAnimados =
-    document.querySelectorAll(
-        ".benefit-card, .product-card, .service-card"
-    );
+function iniciarAnimaciones() {
 
-if ("IntersectionObserver" in window) {
+    const elementos =
+        document.querySelectorAll(`
+            .benefit-card,
+            .product-card,
+            .service-card,
+            .care-card,
+            .employee-box,
+            .care-title,
+            .care-cta,
+            .gallery-item,
+            .promotion,
+            .hero-content,
+            .section-title
+        `);
+
+    if (!elementos.length) {
+        return;
+    }
+
+    elementos.forEach((elemento, indice) => {
+
+        elemento.classList.add("scroll-animate");
+
+        elemento.style.setProperty(
+            "--animation-delay",
+            `${(indice % 5) * 0.08}s`
+        );
+
+    });
+
+    if (!("IntersectionObserver" in window)) {
+
+        elementos.forEach(elemento => {
+            elemento.classList.add("visible");
+        });
+
+        return;
+    }
 
     const observador =
         new IntersectionObserver(
-            elementos => {
+            (entradas, observer) => {
 
-                elementos.forEach(elemento => {
+                entradas.forEach(entrada => {
 
-                    if (
-                        elemento.isIntersecting
-                    ) {
+                    if (entrada.isIntersecting) {
 
-                        elemento.target.classList.add(
+                        entrada.target.classList.add(
                             "visible"
                         );
 
+                        observer.unobserve(
+                            entrada.target
+                        );
                     }
 
                 });
 
             },
             {
-                threshold: 0.15
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
             }
         );
 
-    elementosAnimados.forEach(elemento => {
-
+    elementos.forEach(elemento => {
         observador.observe(elemento);
-
     });
 
+
+    /* Efecto especial para empleado destacado */
+
+    const empleado =
+        document.querySelector(".employee-box");
+
+    if (empleado) {
+
+        empleado.addEventListener(
+            "mouseenter",
+            () => {
+
+                empleado.classList.add(
+                    "employee-hover"
+                );
+
+            }
+        );
+
+        empleado.addEventListener(
+            "mouseleave",
+            () => {
+
+                empleado.classList.remove(
+                    "employee-hover"
+                );
+
+            }
+        );
+    }
+
+
+    /* Efecto de movimiento suave para tarjetas */
+
+    const tarjetas =
+        document.querySelectorAll(`
+            .product-card,
+            .service-card,
+            .care-card
+        `);
+
+    tarjetas.forEach(tarjeta => {
+
+        tarjeta.addEventListener(
+            "mouseenter",
+            () => {
+
+                tarjeta.classList.add(
+                    "card-hover"
+                );
+
+            }
+        );
+
+        tarjeta.addEventListener(
+            "mouseleave",
+            () => {
+
+                tarjeta.classList.remove(
+                    "card-hover"
+                );
+
+            }
+        );
+
+    });
 }
 
 
 /* =========================================
    MENÚ PARA CELULAR
-========================================= */
+   ========================================= */
 
-const menuToggle =
-    document.getElementById(
-        "menu-toggle"
-    );
+function iniciarMenu() {
 
-const nav =
-    document.querySelector(".nav");
+    const menuToggle =
+        document.getElementById("menu-toggle");
 
-if (menuToggle && nav) {
+    const nav =
+        document.querySelector(".nav");
+
+    if (!menuToggle || !nav) {
+        return;
+    }
 
     menuToggle.addEventListener(
         "click",
         () => {
 
-            nav.classList.toggle(
+            nav.classList.toggle("active");
+
+            menuToggle.classList.toggle(
                 "active"
             );
 
         }
     );
 
+
+    /* Cerrar menú al seleccionar una opción */
+
+    const enlaces =
+        nav.querySelectorAll("a");
+
+    enlaces.forEach(enlace => {
+
+        enlace.addEventListener(
+            "click",
+            () => {
+
+                nav.classList.remove("active");
+
+                menuToggle.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    });
 }
 
 
 /* =========================================
-   GALERÍA - VER IMAGEN GRANDE
-========================================= */
+   GALERÍA
+   ========================================= */
+
+function iniciarGaleria() {
+
+    const modal =
+        document.getElementById("image-modal");
+
+    const imagen =
+        document.getElementById(
+            "image-modal-content"
+        );
+
+    const cerrar =
+        document.querySelector(
+            ".image-modal-close"
+        );
+
+    if (!modal || !imagen || !cerrar) {
+        return;
+    }
+
+
+    window.abrirImagen =
+        function(src) {
+
+            imagen.src = src;
+
+            modal.classList.add(
+                "active"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+        };
+
+
+    cerrar.addEventListener(
+        "click",
+        cerrarGaleria
+    );
+
+
+    modal.addEventListener(
+        "click",
+        (evento) => {
+
+            if (
+                evento.target === modal
+            ) {
+
+                cerrarGaleria();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        (evento) => {
+
+            if (
+                evento.key === "Escape" &&
+                modal.classList.contains("active")
+            ) {
+
+                cerrarGaleria();
+
+            }
+
+        }
+    );
+
+
+    function cerrarGaleria() {
+
+        modal.classList.remove(
+            "active"
+        );
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+    }
+}
+
+
+/* =========================================
+   EFECTO SUAVE EN BOTONES
+   ========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        const modal =
-            document.getElementById(
-                "image-modal"
+        const botones =
+            document.querySelectorAll(
+                ".btn-primary, .btn-secondary, button"
             );
 
-        const imagen =
-            document.getElementById(
-                "image-modal-content"
-            );
+        botones.forEach(boton => {
 
-        const cerrar =
-            document.querySelector(
-                ".image-modal-close"
-            );
+            boton.addEventListener(
+                "mousedown",
+                () => {
 
-        if (
-            !modal ||
-            !imagen ||
-            !cerrar
-        ) {
-
-            return;
-
-        }
-
-        window.abrirImagen =
-            function(src) {
-
-                imagen.src = src;
-
-                modal.classList.add(
-                    "active"
-                );
-
-            };
-
-        cerrar.addEventListener(
-            "click",
-            () => {
-
-                modal.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-        modal.addEventListener(
-            "click",
-            (e) => {
-
-                if (
-                    e.target === modal
-                ) {
-
-                    modal.classList.remove(
-                        "active"
+                    boton.classList.add(
+                        "button-pressed"
                     );
 
                 }
+            );
 
-            }
-        );
+            boton.addEventListener(
+                "mouseup",
+                () => {
+
+                    boton.classList.remove(
+                        "button-pressed"
+                    );
+
+                }
+            );
+
+            boton.addEventListener(
+                "mouseleave",
+                () => {
+
+                    boton.classList.remove(
+                        "button-pressed"
+                    );
+
+                }
+            );
+
+        });
 
     }
+);
+
+
+/* =========================================
+   EVITAR ERRORES CON IMÁGENES
+   ========================================= */
+
+document.addEventListener(
+    "error",
+    (evento) => {
+
+        if (
+            evento.target.tagName === "IMG"
+        ) {
+
+            evento.target.classList.add(
+                "image-error"
+            );
+
+        }
+
+    },
+    true
 );
