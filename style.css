@@ -822,8 +822,26 @@ img {
         justify-content: center;
     }
 
+    /* LOGO VISIBLE EN CELULAR */
     .hero-image {
-        display: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .hero-image-placeholder {
+        width: min(360px, 85%);
+        min-height: 300px;
+        padding: 25px;
+    }
+
+    .hero-image-placeholder img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
     }
 
     .benefits-grid {
