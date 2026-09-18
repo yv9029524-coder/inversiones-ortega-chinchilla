@@ -426,25 +426,93 @@ function irAlCheckout() {
 
 
 /* =========================================
+   PEDIDO POR WHATSAPP
+   ========================================= */
+
+const WHATSAPP_EMPRESA = "50496565644";
+
+function generarEnlaceWhatsApp(pedido) {
+
+    if (!pedido || !pedido.productos || !pedido.cliente) {
+        return `https://wa.me/${WHATSAPP_EMPRESA}`;
+    }
+
+    let lineasProductos = "";
+
+    pedido.productos.forEach((item, index) => {
+
+        const subtotal =
+            item.precio * item.cantidad;
+
+        lineasProductos +=
+            `${index + 1}. *${item.nombre}*\n` +
+            `   • Cantidad: ${item.cantidad}\n` +
+            `   • Subtotal: L ${subtotal.toLocaleString()}\n`;
+
+    });
+
+    const correoTexto =
+        pedido.cliente.correo &&
+        pedido.cliente.correo.trim() !== ""
+            ? pedido.cliente.correo.trim()
+            : "No especificado";
+
+    const mensaje =
+        `¡Hola, Inversiones Ortega Chinchilla! 👋\n` +
+        `Quiero confirmar el siguiente pedido realizado en su sitio web:\n\n` +
+        `📦 *NÚMERO DE PEDIDO:* ${pedido.numeroPedido}\n` +
+        `📅 *Fecha:* ${pedido.fecha}\n\n` +
+        `👤 *DATOS DEL CLIENTE:*\n` +
+        `• *Nombre:* ${pedido.cliente.nombre}\n` +
+        `• *Teléfono:* ${pedido.cliente.telefono}\n` +
+        `• *Correo:* ${correoTexto}\n` +
+        `• *Dirección de entrega:* ${pedido.cliente.direccion}\n` +
+        `• *Método de pago:* ${pedido.cliente.pago}\n\n` +
+        `🛒 *DETALLE DE PRODUCTOS:*\n` +
+        `${lineasProductos}\n` +
+        `💰 *TOTAL A PAGAR: L ${pedido.total.toLocaleString()}*\n\n` +
+        `Quedo a la espera de su confirmación y detalles de entrega. ¡Muchas gracias!`;
+
+    return `https://wa.me/${WHATSAPP_EMPRESA}?text=${encodeURIComponent(mensaje)}`;
+}
+
+
+/* =========================================
    ANIMACIONES PROFESIONALES
    ========================================= */
 
 function iniciarAnimaciones() {
 
+    const selectores = `
+        .page-hero,
+        .reviews-hero,
+        .care-hero,
+        .section-title,
+        .benefit-card,
+        .product-card,
+        .service-card,
+        .care-card,
+        .employee-box,
+        .care-cta,
+        .promotion,
+        .gallery-item,
+        .work-gallery-item,
+        .review-page-card,
+        .reviews-summary,
+        .reviews-score,
+        .reviews-summary-info,
+        .reviews-example-note,
+        .review-form-wrapper,
+        .cta,
+        .about-grid,
+        .contact-grid,
+        .cart-section,
+        .checkout-section,
+        .confirmation-box
+    `;
+
     const elementos =
-        document.querySelectorAll(`
-            .benefit-card,
-            .product-card,
-            .service-card,
-            .care-card,
-            .employee-box,
-            .care-title,
-            .care-cta,
-            .gallery-item,
-            .promotion,
-            .hero-content,
-            .section-title
-        `);
+        document.querySelectorAll(selectores);
 
     if (!elementos.length) {
         return;
@@ -452,59 +520,111 @@ function iniciarAnimaciones() {
 
     elementos.forEach((elemento, indice) => {
 
-        elemento.classList.add("scroll-animate");
+        elemento.classList.add(
+            "scroll-animate"
+        );
+
+        const retraso =
+            (indice % 6) * 0.10;
 
         elemento.style.setProperty(
             "--animation-delay",
-            `${(indice % 5) * 0.08}s`
+            `${retraso}s`
         );
 
     });
+
+
+    /* Encabezados visibles inmediatamente */
+
+    const encabezados =
+        document.querySelectorAll(`
+            .page-hero,
+            .reviews-hero,
+            .care-hero
+        `);
+
+    encabezados.forEach(encabezado => {
+
+        encabezado.classList.add(
+            "visible"
+        );
+
+        encabezado.style.setProperty(
+            "--animation-delay",
+            "0s"
+        );
+
+    });
+
+
+    /* Animación al hacer scroll */
 
     if (!("IntersectionObserver" in window)) {
 
         elementos.forEach(elemento => {
-            elemento.classList.add("visible");
+
+            elemento.classList.add(
+                "visible"
+            );
+
         });
 
-        return;
+    } else {
+
+        const observador =
+            new IntersectionObserver(
+                (entradas, observer) => {
+
+                    entradas.forEach(entrada => {
+
+                        if (entrada.isIntersecting) {
+
+                            entrada.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entrada.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.10,
+                    rootMargin:
+                        "0px 0px -35px 0px"
+                }
+            );
+
+        elementos.forEach(elemento => {
+
+            if (
+                !elemento.classList.contains("page-hero") &&
+                !elemento.classList.contains("reviews-hero") &&
+                !elemento.classList.contains("care-hero")
+            ) {
+
+                observador.observe(
+                    elemento
+                );
+
+            }
+
+        });
+
     }
 
-    const observador =
-        new IntersectionObserver(
-            (entradas, observer) => {
 
-                entradas.forEach(entrada => {
-
-                    if (entrada.isIntersecting) {
-
-                        entrada.target.classList.add(
-                            "visible"
-                        );
-
-                        observer.unobserve(
-                            entrada.target
-                        );
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12,
-                rootMargin: "0px 0px -40px 0px"
-            }
-        );
-
-    elementos.forEach(elemento => {
-        observador.observe(elemento);
-    });
-
-
-    /* Efecto especial para empleado destacado */
+    /* Efecto especial para empleado */
 
     const empleado =
-        document.querySelector(".employee-box");
+        document.querySelector(
+            ".employee-box"
+        );
 
     if (empleado) {
 
@@ -529,16 +649,21 @@ function iniciarAnimaciones() {
 
             }
         );
+
     }
 
 
-    /* Efecto de movimiento suave para tarjetas */
+    /* Efecto adicional para tarjetas */
 
     const tarjetas =
         document.querySelectorAll(`
             .product-card,
             .service-card,
-            .care-card
+            .care-card,
+            .benefit-card,
+            .review-page-card,
+            .work-gallery-item,
+            .gallery-item
         `);
 
     tarjetas.forEach(tarjeta => {
@@ -566,6 +691,7 @@ function iniciarAnimaciones() {
         );
 
     });
+
 }
 
 
@@ -576,7 +702,9 @@ function iniciarAnimaciones() {
 function iniciarMenu() {
 
     const menuToggle =
-        document.getElementById("menu-toggle");
+        document.getElementById(
+            "menu-toggle"
+        );
 
     const nav =
         document.querySelector(".nav");
@@ -589,7 +717,9 @@ function iniciarMenu() {
         "click",
         () => {
 
-            nav.classList.toggle("active");
+            nav.classList.toggle(
+                "active"
+            );
 
             menuToggle.classList.toggle(
                 "active"
@@ -610,7 +740,9 @@ function iniciarMenu() {
             "click",
             () => {
 
-                nav.classList.remove("active");
+                nav.classList.remove(
+                    "active"
+                );
 
                 menuToggle.classList.remove(
                     "active"
@@ -630,7 +762,9 @@ function iniciarMenu() {
 function iniciarGaleria() {
 
     const modal =
-        document.getElementById("image-modal");
+        document.getElementById(
+            "image-modal"
+        );
 
     const imagen =
         document.getElementById(
@@ -659,6 +793,7 @@ function iniciarGaleria() {
             document.body.classList.add(
                 "modal-open"
             );
+
         };
 
 
@@ -690,7 +825,9 @@ function iniciarGaleria() {
 
             if (
                 evento.key === "Escape" &&
-                modal.classList.contains("active")
+                modal.classList.contains(
+                    "active"
+                )
             ) {
 
                 cerrarGaleria();
@@ -710,7 +847,9 @@ function iniciarGaleria() {
         document.body.classList.remove(
             "modal-open"
         );
+
     }
+
 }
 
 
@@ -788,4 +927,63 @@ document.addEventListener(
 
     },
     true
+);
+
+
+/* =========================================
+   MARCAR PÁGINA ACTIVA EN EL MENÚ
+   ========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const ruta =
+            window.location.pathname
+                .split("/")
+                .pop()
+                .toLowerCase();
+
+        const paginaActual =
+            ruta === ""
+                ? "index.html"
+                : ruta;
+
+        const enlacesMenu =
+            document.querySelectorAll(
+                ".nav a"
+            );
+
+        enlacesMenu.forEach(enlace => {
+
+            const destino =
+                enlace.getAttribute("href");
+
+            if (
+                !destino ||
+                destino.startsWith("#")
+            ) {
+                return;
+            }
+
+            const paginaDestino =
+                destino
+                    .split("/")
+                    .pop()
+                    .split("?")[0]
+                    .toLowerCase();
+
+            if (
+                paginaActual === paginaDestino
+            ) {
+
+                enlace.classList.add(
+                    "active"
+                );
+
+            }
+
+        });
+
+    }
 );

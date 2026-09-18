@@ -2558,102 +2558,269 @@ img {
 }
 
 /* =========================================================
-   ANIMACIONES PROFESIONALES - INVERSIONES ORTEGA CHINCHILLA
-   ========================================================= */
+   ANIMACIONES PROFESIONALES - SISTEMA ÚNICO
+   Inversiones Ortega Chinchilla
+========================================================= */
 
-/* Entrada general de elementos */
-.reveal-item {
+/* Entrada inicial de toda la página */
+body {
+    animation: pageFadeIn .45s ease both;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Encabezados internos */
+.page-hero,
+.reviews-hero,
+.care-hero {
+    overflow: hidden;
+}
+
+.page-hero span,
+.reviews-hero span,
+.care-hero span {
+    animation: headerLabelIn .65s ease both;
+}
+
+.page-hero h1,
+.reviews-hero h1,
+.care-hero h1 {
+    animation: headerTitleIn .85s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.page-hero p,
+.reviews-hero p,
+.care-hero p {
+    animation: headerTextIn .85s .12s ease both;
+}
+
+@keyframes headerLabelIn {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes headerTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.96);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes headerTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero principal */
+.hero h1 {
+    animation: heroTitleIn .95s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.hero p {
+    animation: heroTextIn .9s .15s ease both;
+}
+
+.hero-buttons {
+    animation: heroTextIn .9s .30s ease both;
+}
+
+.hero-image {
+    animation: heroImageIn .95s .18s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes heroTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes heroTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroImageIn {
+    from {
+        opacity: 0;
+        transform: translateX(55px) scale(.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* =========================================================
+   ANIMACIÓN AL HACER SCROLL
+========================================================= */
+
+.scroll-animate {
     opacity: 0;
-    transform: translateY(35px) scale(.98);
-    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+    transform: translateY(55px) scale(.96);
+    transition:
+        opacity .85s cubic-bezier(.2,.7,.2,1),
+        transform .85s cubic-bezier(.2,.7,.2,1);
+    transition-delay: var(--animation-delay, 0s);
     will-change: opacity, transform;
 }
 
-.reveal-item.visible {
+.scroll-animate.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Movimiento suave de tarjetas */
+/* Títulos */
+.scroll-animate.section-title {
+    transform: translateY(40px) scale(.97);
+}
+
+.scroll-animate.section-title.visible {
+    transform: translateY(0) scale(1);
+}
+
+/* Tarjetas */
+.scroll-animate.benefit-card,
+.scroll-animate.product-card,
+.scroll-animate.service-card,
+.scroll-animate.care-card,
+.scroll-animate.review-page-card,
+.scroll-animate.reviews-score,
+.scroll-animate.reviews-summary-info,
+.scroll-animate.review-form-wrapper,
+.scroll-animate.about-grid,
+.scroll-animate.contact-grid,
+.scroll-animate.cart-section,
+.scroll-animate.checkout-section,
+.scroll-animate.confirmation-box,
+.scroll-animate.care-cta,
+.scroll-animate.promotion,
+.scroll-animate.gallery-item,
+.scroll-animate.work-gallery-item {
+    transform: translateY(55px) scale(.95);
+}
+
+.scroll-animate.benefit-card.visible,
+.scroll-animate.product-card.visible,
+.scroll-animate.service-card.visible,
+.scroll-animate.care-card.visible,
+.scroll-animate.review-page-card.visible,
+.scroll-animate.reviews-score.visible,
+.scroll-animate.reviews-summary-info.visible,
+.scroll-animate.review-form-wrapper.visible,
+.scroll-animate.about-grid.visible,
+.scroll-animate.contact-grid.visible,
+.scroll-animate.cart-section.visible,
+.scroll-animate.checkout-section.visible,
+.scroll-animate.confirmation-box.visible,
+.scroll-animate.care-cta.visible,
+.scroll-animate.promotion.visible,
+.scroll-animate.gallery-item.visible,
+.scroll-animate.work-gallery-item.visible {
+    transform: translateY(0) scale(1);
+}
+
+/* Empleado destacado entra desde la derecha */
+.scroll-animate.employee-box {
+    transform: translateX(65px) scale(.96);
+}
+
+.scroll-animate.employee-box.visible {
+    transform: translateX(0) scale(1);
+}
+
+/* Aparición escalonada */
+.scroll-animate:nth-child(1) { transition-delay: .04s; }
+.scroll-animate:nth-child(2) { transition-delay: .12s; }
+.scroll-animate:nth-child(3) { transition-delay: .20s; }
+.scroll-animate:nth-child(4) { transition-delay: .28s; }
+.scroll-animate:nth-child(5) { transition-delay: .36s; }
+.scroll-animate:nth-child(6) { transition-delay: .44s; }
+
+/* Imágenes */
+.product-card img,
+.service-card img,
+.care-card img,
+.gallery-item img,
+.work-gallery-item img,
+.employee-image img {
+    transition:
+        transform .55s cubic-bezier(.2,.7,.2,1),
+        filter .4s ease;
+}
+
+.product-card:hover img,
+.service-card:hover img,
+.care-card:hover img,
+.gallery-item:hover img,
+.work-gallery-item:hover img,
+.employee-box:hover .employee-image img {
+    transform: scale(1.07);
+    filter: brightness(1.05);
+}
+
+/* Hover de tarjetas */
 .product-card,
 .service-card,
 .benefit-card,
 .care-card,
-.review-page-card {
-    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-    will-change: transform;
+.review-page-card,
+.why-us-card,
+.gallery-item,
+.work-gallery-item,
+.employee-box,
+.promotion-main {
+    transition:
+        transform .35s cubic-bezier(.2,.7,.2,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
 }
 
 .product-card:hover,
 .service-card:hover,
 .benefit-card:hover,
 .care-card:hover,
-.review-page-card:hover {
-    transform: translateY(-9px);
-    box-shadow: 0 18px 38px rgba(0, 0, 0, .14);
-}
-
-/* Zoom elegante de imágenes */
-.product-card img,
-.service-card img,
-.care-card img,
-.gallery-item img,
-.employee-image img {
-    transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .4s ease;
-}
-
-.product-card:hover img,
-.service-card:hover img,
-.care-card:hover img,
-.gallery-item:hover img {
-    transform: scale(1.055);
-}
-
-/* Botones */
-.btn-primary,
-.btn-secondary,
-button[type="submit"],
-.review-submit {
-    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-}
-
-.btn-primary:hover,
-.btn-secondary:hover,
-button[type="submit"]:hover,
-.review-submit:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
-    filter: brightness(1.04);
-}
-
-.btn-primary:active,
-.btn-secondary:active,
-button[type="submit"]:active,
-.review-submit:active {
-    transform: translateY(0) scale(.98);
-}
-
-/* Hero con entrada elegante */
-.hero h1,
-.hero h2,
-.care-hero h1,
-.care-hero h2 {
-    animation: titleReveal .9s cubic-bezier(.2,.7,.2,1) both;
-}
-
-.hero p,
-.care-hero p {
-    animation: subtitleReveal 1s .15s ease both;
-}
-
-@keyframes titleReveal {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes subtitleReveal {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+.review-page-card:hover,
+.why-us-card:hover,
+.gallery-item:hover,
+.work-gallery-item:hover,
+.employee-box:hover,
+.promotion-main:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 42px rgba(0,0,0,.16);
 }
 
 /* Cuidado del vehículo */
@@ -2669,7 +2836,7 @@ button[type="submit"]:active,
     bottom: 0;
     width: 0;
     height: 3px;
-    background: currentColor;
+    background: var(--primary);
     transition: width .4s ease;
 }
 
@@ -2678,60 +2845,321 @@ button[type="submit"]:active,
 }
 
 .care-icon {
-    transition: transform .35s ease;
+    transition: transform .4s cubic-bezier(.2,.7,.2,1);
 }
 
 .care-card:hover .care-icon {
-    transform: translateY(-4px) rotate(-4deg) scale(1.08);
+    transform: translateY(-5px) rotate(-5deg) scale(1.10);
 }
 
-/* Empleado destacado */
-.employee-section {
-    position: relative;
+/* Botones */
+.btn,
+button,
+.hero-buttons a,
+.cta-button,
+.buy-button,
+.cart-button,
+.review-submit,
+.promotion-buttons a {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
 }
 
-.employee-box {
-    animation: employeeFloat 5s ease-in-out infinite;
-    transition: transform .4s ease, box-shadow .4s ease;
+.btn:hover,
+button:hover,
+.hero-buttons a:hover,
+.cta-button:hover,
+.buy-button:hover,
+.cart-button:hover,
+.review-submit:hover,
+.promotion-buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.17);
+    filter: brightness(1.05);
 }
 
-.employee-box:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, .17);
+.btn:active,
+button:active,
+.hero-buttons a:active,
+.cta-button:active,
+.buy-button:active,
+.cart-button:active,
+.review-submit:active,
+.promotion-buttons a:active {
+    transform: translateY(0) scale(.97);
 }
 
-.employee-image {
-    overflow: hidden;
+/* Menú */
+.nav a {
+    transition: color .25s ease, transform .25s ease;
 }
 
-.employee-image img {
+.nav a:hover {
+    transform: translateY(-2px);
+}
+
+.nav a.active {
+    color: var(--primary) !important;
+    animation: navActiveIn .45s ease both;
+}
+
+.nav a.active::after {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    background: var(--primary);
 }
 
-.employee-box:hover .employee-image img {
-    transform: scale(1.045);
+@keyframes navActiveIn {
+    from { opacity: .55; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes employeeFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+/* WhatsApp */
+.whatsapp-button {
+    animation: whatsappIn .8s .7s ease both;
 }
 
-/* Evita movimiento para usuarios que lo desactivan */
+@keyframes whatsappIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.85);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal de galería */
+.image-modal.active .image-modal-content,
+.image-modal.active img {
+    animation: modalZoom .35s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes modalZoom {
+    from {
+        opacity: 0;
+        transform: scale(.88);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* FAQ */
+.faq-item {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.faq-item:hover {
+    transform: translateX(4px);
+    border-color: var(--primary);
+}
+
+.faq-item[open] {
+    box-shadow: 0 10px 28px rgba(0,0,0,.10);
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .scroll-animate {
+        transform: translateY(38px) scale(.97);
+    }
+
+    .scroll-animate.benefit-card,
+    .scroll-animate.product-card,
+    .scroll-animate.service-card,
+    .scroll-animate.care-card,
+    .scroll-animate.review-page-card {
+        transform: translateY(40px) scale(.97);
+    }
+
+    .scroll-animate.employee-box {
+        transform: translateY(40px) scale(.97);
+    }
+
+    .scroll-animate.visible,
+    .scroll-animate.benefit-card.visible,
+    .scroll-animate.product-card.visible,
+    .scroll-animate.service-card.visible,
+    .scroll-animate.care-card.visible,
+    .scroll-animate.review-page-card.visible,
+    .scroll-animate.employee-box.visible {
+        transform: translateY(0) scale(1);
+    }
+
+    .product-card:hover,
+    .service-card:hover,
+    .benefit-card:hover,
+    .care-card:hover,
+    .review-page-card:hover,
+    .why-us-card:hover,
+    .gallery-item:hover,
+    .work-gallery-item:hover,
+    .employee-box:hover,
+    .promotion-main:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Usuarios que prefieren menos movimiento */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
         transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
     }
 
-    .reveal-item {
+    .scroll-animate,
+    .scroll-animate.visible {
         opacity: 1 !important;
         transform: none !important;
     }
+}
+/* =========================================================
+   AJUSTE FINAL - ENCABEZADOS INTERNOS
+   Reduce el espacio vertical y mantiene las animaciones
+========================================================= */
+
+.page-hero,
+.reviews-hero,
+.care-hero {
+    padding: 38px 20px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: hidden;
+}
+
+/* Etiqueta superior */
+.page-hero span,
+.reviews-hero span,
+.care-hero span {
+    display: inline-block;
+    margin-bottom: 8px;
+    animation: internalLabelFinal .45s ease both !important;
+}
+
+/* Título */
+.page-hero h1,
+.reviews-hero h1,
+.care-hero h1 {
+    max-width: 900px;
+    margin: 0 auto 10px !important;
+    font-size: 42px;
+    line-height: 1.12;
+    color: var(--white) !important;
+    opacity: 1 !important;
+    animation: internalTitleFinal .55s cubic-bezier(.2,.7,.2,1) both !important;
+}
+
+/* Descripción */
+.page-hero p,
+.reviews-hero p,
+.care-hero p {
+    max-width: 720px;
+    margin: 0 auto !important;
+    color: #cccccc !important;
+    font-size: 15px;
+    line-height: 1.55;
+    opacity: 1 !important;
+    animation: internalTextFinal .55s .08s ease both !important;
+}
+
+/* Animación de etiqueta */
+@keyframes internalLabelFinal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación del título */
+@keyframes internalTitleFinal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación del texto */
+@keyframes internalTextFinal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .page-hero,
+    .reviews-hero,
+    .care-hero {
+        padding: 32px 18px !important;
+    }
+
+    .page-hero h1,
+    .reviews-hero h1,
+    .care-hero h1 {
+        font-size: 32px;
+        line-height: 1.15;
+    }
+
+    .page-hero p,
+    .reviews-hero p,
+    .care-hero p {
+        font-size: 14px;
+    }
+}
+
+/* =========================================================
+   CELULAR PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .page-hero,
+    .reviews-hero,
+    .care-hero {
+        padding: 28px 15px !important;
+    }
+
+    .page-hero h1,
+    .reviews-hero h1,
+    .care-hero h1 {
+        font-size: 28px;
+    }
+
+    .page-hero p,
+    .reviews-hero p,
+    .care-hero p {
+        font-size: 13px;
+    }
+
 }

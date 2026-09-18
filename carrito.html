@@ -259,6 +259,30 @@
             text-decoration: none;
         }
 
+        .btn-clear-cart {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 12px 20px;
+            background: transparent;
+            color: #ff5252;
+            border: 1px solid rgba(255, 82, 82, 0.4);
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-clear-cart:hover {
+            background: rgba(255, 82, 82, 0.12);
+            border-color: #ff5252;
+            color: #ff7b7b;
+            transform: translateY(-2px);
+        }
+
 
         /* =========================================
            RESPONSIVE TABLET
@@ -532,6 +556,15 @@
 
                     </a>
 
+                    <button
+                        type="button"
+                        class="btn-clear-cart"
+                        id="btn-vaciar-carrito"
+                        onclick="vaciarCarrito()">
+
+                        🗑️ Vaciar carrito
+
+                    </button>
 
                     <button
                         type="button"
@@ -705,6 +738,35 @@
 
 <script src="script.js"></script>
 
+<script>
+
+    function vaciarCarrito() {
+
+        const carrito =
+            obtenerCarrito();
+
+        if (!carrito || carrito.length === 0) {
+            return;
+        }
+
+        const confirmacion =
+            confirm(
+                "¿Estás seguro de que deseas vaciar todos los productos del carrito?"
+            );
+
+        if (confirmacion) {
+
+            guardarCarrito([]);
+
+            mostrarNotificacion(
+                "Carrito vaciado"
+            );
+
+        }
+
+    }
+
+</script>
 
 </body>
 </html>

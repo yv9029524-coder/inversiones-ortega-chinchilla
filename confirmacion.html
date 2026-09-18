@@ -455,6 +455,46 @@
         }
 
 
+        .btn-whatsapp {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 13px 24px;
+
+            background: #25d366;
+
+            color: #ffffff !important;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .btn-whatsapp:hover {
+
+            background: #1eb956;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+
+        }
+
+
         /* =========================================
            RESPONSIVE
         ========================================= */
@@ -749,12 +789,7 @@
                     📌 Importante:
                 </strong>
 
-                Este sitio utiliza un proceso de compra
-                simulado como parte del prototipo de la
-                tienda en línea. Un representante de
-                Inversiones Ortega Chinchilla se pondrá
-                en contacto para confirmar el pedido,
-                disponibilidad y forma de pago.
+                Tu pedido ha sido registrado con éxito. Si no se abrió la aplicación de WhatsApp automáticamente, haz clic en el botón verde <strong>"Enviar pedido por WhatsApp"</strong> para enviarnos el detalle de tu compra y coordinar la entrega.
 
             </div>
 
@@ -772,6 +807,17 @@
             <!-- BOTONES -->
 
             <div class="confirmation-actions">
+
+                <a
+                    id="btn-whatsapp-confirmacion"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn-whatsapp">
+
+                    📲 Enviar pedido por WhatsApp
+
+                </a>
 
                 <a
                     href="productos.html"
@@ -1006,6 +1052,16 @@ document.addEventListener(
 
             `;
 
+            const botonWhatsApp =
+                document.getElementById(
+                    "btn-whatsapp-confirmacion"
+                );
+
+            if (botonWhatsApp) {
+                botonWhatsApp.style.display =
+                    "none";
+            }
+
             return;
 
         }
@@ -1150,6 +1206,27 @@ document.addEventListener(
         totalElemento.textContent =
             "L " +
             total.toLocaleString();
+
+
+        /* =====================================
+           BOTÓN DE WHATSAPP
+        ===================================== */
+
+        const botonWhatsApp =
+            document.getElementById(
+                "btn-whatsapp-confirmacion"
+            );
+
+        if (botonWhatsApp) {
+
+            const urlWhatsApp =
+                pedido.urlWhatsApp ||
+                generarEnlaceWhatsApp(pedido);
+
+            botonWhatsApp.href =
+                urlWhatsApp;
+
+        }
 
 
     }

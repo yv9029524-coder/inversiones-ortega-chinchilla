@@ -598,48 +598,106 @@
         }
 
 
+        function crearTarjetaResena(resena) {
+
+            const tarjeta =
+                document.createElement("article");
+
+            tarjeta.className =
+                "review-page-card review-new-card";
+
+
+            /* Estrellas seguras */
+            const starsDiv =
+                document.createElement("div");
+
+            starsDiv.className =
+                "review-page-stars";
+
+            const calificacion =
+                Math.min(
+                    Math.max(
+                        parseInt(resena.calificacion) || 5,
+                        1
+                    ),
+                    5
+                );
+
+            starsDiv.textContent =
+                "★".repeat(calificacion) +
+                "☆".repeat(5 - calificacion);
+
+
+            /* Comentario seguro asignado como texto puro */
+            const parrafo =
+                document.createElement("p");
+
+            parrafo.textContent =
+                `“${resena.comentario}”`;
+
+
+            /* Autor seguro */
+            const autorDiv =
+                document.createElement("div");
+
+            autorDiv.className =
+                "review-page-author";
+
+            const avatarDiv =
+                document.createElement("div");
+
+            avatarDiv.className =
+                "review-avatar";
+
+            const inicial =
+                resena.nombre && resena.nombre.length > 0
+                    ? resena.nombre.charAt(0).toUpperCase()
+                    : "C";
+
+            avatarDiv.textContent =
+                inicial;
+
+            const infoDiv =
+                document.createElement("div");
+
+            const strongNombre =
+                document.createElement("strong");
+
+            strongNombre.textContent =
+                resena.nombre;
+
+            const spanEstado =
+                document.createElement("span");
+
+            spanEstado.textContent =
+                "Opinión enviada";
+
+            infoDiv.appendChild(strongNombre);
+            infoDiv.appendChild(spanEstado);
+
+            autorDiv.appendChild(avatarDiv);
+            autorDiv.appendChild(infoDiv);
+
+
+            /* Montaje de la tarjeta */
+            tarjeta.appendChild(starsDiv);
+            tarjeta.appendChild(parrafo);
+            tarjeta.appendChild(autorDiv);
+
+            return tarjeta;
+
+        }
+
+
         function mostrarResenasGuardadas() {
 
-            const resenas = obtenerResenasGuardadas();
+            const resenas =
+                obtenerResenasGuardadas();
 
             resenas.forEach(resena => {
 
-                const tarjeta = document.createElement("article");
-
-                tarjeta.className = "review-page-card review-new-card";
-
-                tarjeta.innerHTML = `
-
-                    <div class="review-page-stars">
-                        ${"★".repeat(resena.calificacion)}
-                        ${"☆".repeat(5 - resena.calificacion)}
-                    </div>
-
-                    <p>
-                        “${resena.comentario}”
-                    </p>
-
-                    <div class="review-page-author">
-
-                        <div class="review-avatar">
-                            ${resena.nombre.charAt(0).toUpperCase()}
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${resena.nombre}
-                            </strong>
-
-                            <span>
-                                Opinión enviada
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
+                const tarjeta =
+                    crearTarjetaResena(resena);
 
                 listaResenas.appendChild(tarjeta);
 
@@ -672,10 +730,10 @@
                 }
 
 
-                const resenas = obtenerResenasGuardadas();
+                const resenas =
+                    obtenerResenasGuardadas();
 
-
-                resenas.push({
+                const nuevaResena = {
 
                     nombre: nombre,
 
@@ -683,7 +741,9 @@
 
                     comentario: comentario
 
-                });
+                };
+
+                resenas.push(nuevaResena);
 
 
                 localStorage.setItem(
@@ -692,45 +752,9 @@
                 );
 
 
-                const tarjeta = document.createElement("article");
-
-                tarjeta.className =
-                    "review-page-card review-new-card";
-
-
-                tarjeta.innerHTML = `
-
-                    <div class="review-page-stars">
-                        ${"★".repeat(calificacion)}
-                        ${"☆".repeat(5 - calificacion)}
-                    </div>
-
-                    <p>
-                        “${comentario}”
-                    </p>
-
-                    <div class="review-page-author">
-
-                        <div class="review-avatar">
-                            ${nombre.charAt(0).toUpperCase()}
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${nombre}
-                            </strong>
-
-                            <span>
-                                Opinión enviada
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
-
+                /* Insertar la nueva reseña de forma segura */
+                const tarjeta =
+                    crearTarjetaResena(nuevaResena);
 
                 listaResenas.appendChild(tarjeta);
 

@@ -1201,22 +1201,22 @@ document.addEventListener(
                         nombre:
                             document.getElementById(
                                 "nombre"
-                            ).value,
+                            ).value.trim(),
 
                         telefono:
                             document.getElementById(
                                 "telefono"
-                            ).value,
+                            ).value.trim(),
 
                         correo:
                             document.getElementById(
                                 "correo"
-                            ).value,
+                            ).value.trim(),
 
                         direccion:
                             document.getElementById(
                                 "direccion"
-                            ).value,
+                            ).value.trim(),
 
                         pago:
                             document.getElementById(
@@ -1234,6 +1234,14 @@ document.addEventListener(
                 };
 
 
+                /* Generar enlace para WhatsApp con los datos del pedido */
+                const urlWhatsApp =
+                    generarEnlaceWhatsApp(pedido);
+
+                pedido.urlWhatsApp =
+                    urlWhatsApp;
+
+
                 localStorage.setItem(
                     "pedidoIOC",
                     JSON.stringify(pedido)
@@ -1245,8 +1253,25 @@ document.addEventListener(
                 );
 
 
-                window.location.href =
-                    "confirmacion.html";
+                /* Intentar abrir WhatsApp automáticamente */
+                try {
+                    window.open(
+                        urlWhatsApp,
+                        "_blank"
+                    );
+                } catch (error) {
+                    console.warn(
+                        "Apertura automática de WhatsApp bloqueada:",
+                        error
+                    );
+                }
+
+
+                /* Redirigir a confirmación tras breve pausa para permitir la apertura */
+                setTimeout(function() {
+                    window.location.href =
+                        "confirmacion.html";
+                }, 350);
 
             }
 
