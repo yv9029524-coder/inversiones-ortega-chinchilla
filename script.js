@@ -158,8 +158,33 @@ function agregarAlCarrito(nombre, precio) {
 
     guardarCarrito(carrito);
 
+    /* Animación rápida del contador del carrito */
+    const contador = document.getElementById("cart-count");
+
+    if (contador) {
+        contador.classList.remove("cart-count-pop");
+        void contador.offsetWidth;
+        contador.classList.add("cart-count-pop");
+    }
+
+    /* Animación visual del botón que agregó el producto */
+    const botonAgregar = [...document.querySelectorAll("button")]
+        .find(boton =>
+            boton.textContent.toLowerCase().includes("agregar al carrito")
+        );
+
+    if (botonAgregar) {
+        botonAgregar.classList.remove("add-to-cart-success");
+        void botonAgregar.offsetWidth;
+        botonAgregar.classList.add("add-to-cart-success");
+
+        setTimeout(() => {
+            botonAgregar.classList.remove("add-to-cart-success");
+        }, 700);
+    }
+
     mostrarNotificacion(
-        "Producto agregado al carrito"
+        "✓ Producto agregado al carrito"
     );
 }
 
@@ -180,7 +205,7 @@ function eliminarDelCarrito(nombre) {
     guardarCarrito(carrito);
 
     mostrarNotificacion(
-        "Producto eliminado del carrito"
+        "🗑️ Producto eliminado del carrito"
     );
 }
 
@@ -987,3 +1012,137 @@ document.addEventListener(
 
     }
 );
+/* =========================================================
+   MÚSICA DEL SITIO
+   ========================================================= */
+(function iniciarMusicaSitio() {
+
+    function crearReproductorMusica() {
+
+        if (document.getElementById("site-music-control")) {
+            return;
+        }
+
+        const audio = document.createElement("audio");
+
+        audio.id = "site-music";
+        audio.loop = true;
+        audio.preload = "metadata";
+      audio.src = "audio/musica_suave_inversiones.mp3";
+
+        const boton = document.createElement("button");
+
+        boton.type = "button";
+        boton.id = "site-music-control";
+        boton.className = "site-music-control";
+
+        boton.setAttribute("aria-label", "Reproducir música");
+        boton.setAttribute("title", "Reproducir música");
+
+        boton.innerHTML = `
+            <span class="site-music-icon">▶</span>
+            <span class="site-music-text">Música</span>
+        `;
+
+        document.body.appendChild(audio);
+        document.body.appendChild(boton);
+
+        let reproduciendo = false;
+
+        function actualizarBoton() {
+
+            if (reproduciendo) {
+
+                boton.innerHTML = `
+                    <span class="site-music-icon">⏸</span>
+                    <span class="site-music-text">Pausar</span>
+                `;
+
+                boton.setAttribute("aria-label", "Pausar música");
+                boton.setAttribute("title", "Pausar música");
+
+                boton.classList.add("playing");
+
+            } else {
+
+                boton.innerHTML = `
+                    <span class="site-music-icon">▶</span>
+                    <span class="site-music-text">Música</span>
+                `;
+
+                boton.setAttribute("aria-label", "Reproducir música");
+                boton.setAttribute("title", "Reproducir música");
+
+                boton.classList.remove("playing");
+            }
+        }
+
+        boton.addEventListener("click", async () => {
+
+            if (audio.paused) {
+
+                try {
+
+                    await audio.play();
+
+                    reproduciendo = true;
+
+                    localStorage.setItem("musicaIOC", "on");
+
+                } catch (error) {
+
+                    reproduciendo = false;
+
+                    localStorage.setItem("musicaIOC", "off");
+                }
+
+            } else {
+
+                audio.pause();
+
+                reproduciendo = false;
+
+                localStorage.setItem("musicaIOC", "off");
+            }
+
+            actualizarBoton();
+        });
+
+        audio.addEventListener("play", () => {
+
+            reproduciendo = true;
+
+            actualizarBoton();
+        });
+
+        audio.addEventListener("pause", () => {
+
+            reproduciendo = false;
+
+            actualizarBoton();
+        });
+
+        audio.addEventListener("error", () => {
+
+            boton.setAttribute(
+                "title",
+                "No se pudo cargar la música"
+            );
+        });
+
+        actualizarBoton();
+    }
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            crearReproductorMusica
+        );
+
+    } else {
+
+        crearReproductorMusica();
+    }
+
+})();

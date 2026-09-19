@@ -513,6 +513,64 @@
 
 
         /* =========================================
+           PROGRESO DE COMPRA
+        ========================================= */
+
+        .checkout-progress {
+            max-width: 760px;
+            margin: 0 auto 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkout-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #999999;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .checkout-step span {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #e5e5e5;
+            color: #777777;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .checkout-step.active {
+            color: #111111;
+        }
+
+        .checkout-step.active span {
+            background: #f5b400;
+            color: #111111;
+            box-shadow: 0 5px 14px rgba(245,180,0,.22);
+        }
+
+        .checkout-progress-line {
+            width: 70px;
+            height: 2px;
+            background: #dddddd;
+        }
+
+        .optional-label {
+            color: #999999;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================
            CELULAR
         ========================================= */
 
@@ -528,6 +586,26 @@
 
 
         @media (max-width: 550px) {
+
+            .checkout-progress {
+                gap: 6px;
+                margin-bottom: 30px;
+            }
+
+            .checkout-step {
+                flex-direction: column;
+                gap: 4px;
+                font-size: 10px;
+            }
+
+            .checkout-step span {
+                width: 29px;
+                height: 29px;
+            }
+
+            .checkout-progress-line {
+                width: 28px;
+            }
 
             .checkout-section {
 
@@ -685,6 +763,24 @@
         </div>
 
 
+        <div class="checkout-progress" aria-label="Proceso de compra">
+            <div class="checkout-step active">
+                <span>1</span>
+                <strong>Datos</strong>
+            </div>
+            <div class="checkout-progress-line"></div>
+            <div class="checkout-step active">
+                <span>2</span>
+                <strong>Pedido</strong>
+            </div>
+            <div class="checkout-progress-line"></div>
+            <div class="checkout-step">
+                <span>3</span>
+                <strong>Confirmación</strong>
+            </div>
+        </div>
+
+
         <div id="checkout-content"
              class="checkout-grid">
 
@@ -762,6 +858,20 @@
                             name="direccion"
                             placeholder="Escribí tu dirección"
                             required></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="notas">
+                            Indicaciones adicionales <span class="optional-label">(opcional)</span>
+                        </label>
+
+                        <textarea
+                            id="notas"
+                            name="notas"
+                            placeholder="Ej. horario de entrega, referencia de ubicación o consulta"></textarea>
 
                     </div>
 
@@ -1216,6 +1326,11 @@ document.addEventListener(
                         direccion:
                             document.getElementById(
                                 "direccion"
+                            ).value.trim(),
+
+                        notas:
+                            document.getElementById(
+                                "notas"
                             ).value.trim(),
 
                         pago:

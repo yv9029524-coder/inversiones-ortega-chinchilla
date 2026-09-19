@@ -3163,3 +3163,538 @@ button:active,
     }
 
 }
+
+
+/* =========================================================
+   PASO 6 - ANIMACIONES MODERNAS E INTERACCIONES
+   Se agrega al final para complementar el diseño existente.
+========================================================= */
+
+/* Entrada más elegante de las tarjetas */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(42px) scale(.97);
+    transition:
+        opacity .7s cubic-bezier(.2,.7,.2,1),
+        transform .7s cubic-bezier(.2,.7,.2,1);
+    transition-delay: var(--animation-delay, 0s);
+    will-change: opacity, transform;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Tarjetas: elevación suave y profesional */
+.product-card,
+.service-card,
+.benefit-card,
+.care-card,
+.review-page-card,
+.why-us-card,
+.work-gallery-item,
+.gallery-item,
+.employee-box,
+.promotion-main {
+    transform-origin: center bottom;
+    transition:
+        transform .35s cubic-bezier(.2,.7,.2,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+.product-card:hover,
+.service-card:hover,
+.benefit-card:hover,
+.care-card:hover,
+.review-page-card:hover,
+.why-us-card:hover,
+.work-gallery-item:hover,
+.gallery-item:hover,
+.employee-box:hover,
+.promotion-main:hover {
+    transform: translateY(-9px) scale(1.01);
+    box-shadow: 0 22px 45px rgba(0,0,0,.15);
+}
+
+/* Imágenes con zoom más suave */
+.product-card .product-image img,
+.products-section .product-image img,
+.service-card .service-image img,
+.care-card img,
+.work-gallery-item img,
+.gallery-item img {
+    transition:
+        transform .55s cubic-bezier(.2,.7,.2,1),
+        filter .4s ease;
+}
+
+.product-card:hover .product-image img,
+.products-section .product-card:hover .product-image img,
+.service-card:hover .service-image img,
+.care-card:hover img,
+.work-gallery-item:hover img,
+.gallery-item:hover img {
+    transform: scale(1.07);
+    filter: brightness(1.04);
+}
+
+/* Botones: efecto de presión */
+.btn,
+button,
+.hero-buttons a,
+.cta-button,
+.buy-button,
+.cart-button,
+.review-submit,
+.promotion-buttons a {
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        filter .22s ease;
+}
+
+.btn:hover,
+button:hover,
+.hero-buttons a:hover,
+.cta-button:hover,
+.buy-button:hover,
+.cart-button:hover,
+.review-submit:hover,
+.promotion-buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(0,0,0,.16);
+    filter: brightness(1.04);
+}
+
+.button-pressed {
+    transform: translateY(1px) scale(.96) !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,.12) !important;
+}
+
+/* Contador del carrito */
+#cart-count.cart-count-pop {
+    animation: cartCountPop .5s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cartCountPop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.35);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Confirmación visual al agregar */
+.add-to-cart-success {
+    animation: addToCartSuccess .65s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes addToCartSuccess {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    35% {
+        transform: translateY(-3px) scale(1.04);
+    }
+    70% {
+        transform: translateY(0) scale(.98);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Favoritos ❤️ */
+.favorite-button {
+    transition:
+        transform .25s cubic-bezier(.2,.8,.2,1),
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+.favorite-button.active {
+    animation: favoritePop .4s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes favoritePop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.28);
+    }
+    75% {
+        transform: scale(.92);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Navegación */
+.nav a {
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.nav a:hover {
+    transform: translateY(-2px);
+}
+
+/* WhatsApp: pequeño pulso periódico */
+.whatsapp-button {
+    animation:
+        whatsappIn .8s .7s ease both,
+        whatsappPulse 2.8s 2s ease-in-out infinite;
+}
+
+@keyframes whatsappPulse {
+    0%, 70%, 100% {
+        box-shadow: 0 8px 25px rgba(0,0,0,.20);
+    }
+    82% {
+        box-shadow: 0 8px 25px rgba(37,211,102,.30);
+        transform: translateY(-3px) scale(1.03);
+    }
+}
+
+/* FAQ */
+.faq-item {
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.faq-item:hover {
+    transform: translateX(4px);
+    border-color: var(--primary);
+}
+
+.faq-item[open] {
+    box-shadow: 0 12px 30px rgba(0,0,0,.10);
+}
+
+/* Respeto por usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .scroll-animate,
+    .scroll-animate.visible {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Celular: movimientos un poco más discretos */
+@media (max-width: 768px) {
+
+    .scroll-animate {
+        transform: translateY(28px) scale(.98);
+    }
+
+    .scroll-animate.visible {
+        transform: translateY(0) scale(1);
+    }
+
+    .product-card:hover,
+    .service-card:hover,
+    .benefit-card:hover,
+    .care-card:hover,
+    .review-page-card:hover,
+    .why-us-card:hover,
+    .work-gallery-item:hover,
+    .gallery-item:hover,
+    .employee-box:hover,
+    .promotion-main:hover {
+        transform: translateY(-5px);
+    }
+
+    .whatsapp-button {
+        animation:
+            whatsappIn .8s .7s ease both,
+            whatsappPulse 3.2s 2s ease-in-out infinite;
+    }
+}
+
+
+/* =========================================================
+   PULIDO VISUAL FINAL — INVERSIONES ORTEGA CHINCHILLA
+   Capa final de consistencia visual
+========================================================= */
+
+:root {
+    --shadow-soft: 0 10px 30px rgba(0,0,0,.08);
+    --shadow-hover: 0 18px 42px rgba(0,0,0,.13);
+    --radius-main: 16px;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-light,
+button,
+.cart-actions a,
+.cart-actions button {
+    transition: transform .25s ease, box-shadow .25s ease,
+                background-color .25s ease, border-color .25s ease;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-light:hover,
+.cart-actions a:hover,
+.cart-actions button:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+.product-card,
+.service-card,
+.benefit-card,
+.why-us-card,
+.review-page-card,
+.care-card {
+    border-radius: var(--radius-main);
+}
+
+.product-card:hover,
+.products-section .product-card:hover,
+.service-card:hover,
+.benefit-card:hover,
+.why-us-card:hover,
+.review-page-card:hover,
+.care-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.product-image img,
+.products-section .product-image img,
+.service-image img {
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.product-card:hover .product-image img,
+.products-section .product-card:hover .product-image img,
+.service-card:hover .service-image img {
+    transform: scale(1.05);
+}
+
+.section-title h2,
+.care-title h2,
+.reviews-summary-info h2 {
+    letter-spacing: -.4px;
+}
+
+.faq-item {
+    transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.faq-item:hover {
+    border-color: #dddddd;
+    box-shadow: var(--shadow-soft);
+}
+
+.faq-item[open] {
+    border-color: #ead47a;
+}
+
+.cart-item,
+.cart-summary,
+.empty-cart {
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,.10);
+}
+
+.whatsapp-button {
+    animation: whatsappFloat 3s ease-in-out infinite;
+}
+
+.whatsapp-button:hover {
+    animation-play-state: paused;
+}
+
+@keyframes whatsappFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+    outline: 3px solid rgba(245,180,0,.45);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-light {
+        min-height: 48px;
+    }
+
+    .whatsapp-button {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .section-title {
+        margin-bottom: 32px;
+    }
+}
+/* =========================================================
+   BOTÓN DE MÚSICA
+   ========================================================= */
+
+.site-music-control {
+    position: fixed;
+    right: 22px;
+    bottom: 24px;
+    z-index: 9998;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 112px;
+    padding: 11px 15px;
+
+    border: 1px solid rgba(245, 180, 0, .45);
+    border-radius: 999px;
+
+    background: rgba(17, 17, 17, .94);
+    color: #f5b400;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .2px;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .22);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.site-music-control:hover {
+    transform: translateY(-3px);
+    background: #111;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .28);
+}
+
+.site-music-control:active {
+    transform: translateY(-1px) scale(.98);
+}
+
+.site-music-control:focus-visible {
+    outline: 3px solid rgba(245, 180, 0, .35);
+    outline-offset: 3px;
+}
+
+.site-music-icon {
+    width: 22px;
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f5b400;
+    color: #111;
+
+    font-size: 10px;
+    line-height: 1;
+}
+
+.site-music-control.playing .site-music-icon {
+    animation: musicPulse 1.3s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .site-music-control {
+        right: 16px;
+        bottom: 82px;
+
+        min-width: 48px;
+        width: 48px;
+        height: 48px;
+
+        padding: 0;
+        gap: 0;
+    }
+
+    .site-music-text {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .site-music-control,
+    .site-music-control:hover,
+    .site-music-control.playing .site-music-icon {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}

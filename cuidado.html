@@ -198,6 +198,137 @@
             transform: translateY(-3px);
         }
 
+        .care-cta-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .care-cta-buttons a {
+            margin: 0;
+        }
+
+        .care-cta-buttons .care-cta-whatsapp {
+            background: #25d366;
+        }
+
+        .care-cta-buttons .care-cta-whatsapp:hover {
+            background: #1fbd5a;
+        }
+
+
+        /* =========================================
+           MEJORAS VISUALES
+        ========================================= */
+
+        .care-hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .care-hero::before {
+            content: "🚗";
+            position: absolute;
+            right: 8%;
+            bottom: -25px;
+            font-size: 150px;
+            opacity: .045;
+            transform: rotate(-8deg);
+            pointer-events: none;
+        }
+
+        .care-hero h1,
+        .care-hero p,
+        .care-hero span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .care-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .care-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: #f5c400;
+            transition: width .35s ease;
+        }
+
+        .care-card:hover::after {
+            width: 100%;
+        }
+
+        .care-icon {
+            display: inline-flex;
+            width: 58px;
+            height: 58px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #fff8df;
+            transition: transform .35s ease;
+        }
+
+        .care-card:hover .care-icon {
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        .employee-box {
+            position: relative;
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .employee-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 55px rgba(0,0,0,.22);
+        }
+
+        .employee-image {
+            overflow: hidden;
+        }
+
+        .employee-image img {
+            transition: transform .7s ease;
+        }
+
+        .employee-box:hover .employee-image img {
+            transform: scale(1.04);
+        }
+
+        .employee-message {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .care-cta {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .care-cta::before {
+            content: "⚙️";
+            position: absolute;
+            left: 8%;
+            bottom: -35px;
+            font-size: 130px;
+            opacity: .06;
+            pointer-events: none;
+        }
+
+        .care-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 850px) {
             .care-grid {
                 grid-template-columns: 1fr;
@@ -408,9 +539,20 @@
     <section class="care-cta">
         <div class="container">
             <h2>¿Necesitás cuidar tu vehículo?</h2>
-            <p>Conocé nuestros productos y servicios.</p>
+            <p>Conocé nuestros productos y servicios o consultanos directamente.</p>
 
-            <a href="servicios.html">Ver servicios</a>
+            <div class="care-cta-buttons">
+                <a href="servicios.html">Ver servicios</a>
+
+                <a
+                    href="https://wa.me/50496565644?text=Hola%2C%20quisiera%20consultar%20sobre%20el%20cuidado%20y%20mantenimiento%20de%20mi%20veh%C3%ADculo."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="care-cta-whatsapp"
+                >
+                    💬 Consultar por WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
