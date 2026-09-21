@@ -487,11 +487,27 @@ function solicitarServicio(servicio) {
         servicio +
         ". Me gustaría consultar disponibilidad y precio.";
 
-    const enlace =
-        "https://wa.me/50496565644?text=" +
-        encodeURIComponent(mensaje);
+    const enviarWhatsApp = confirm(
+        "✓ Solicitud enviada\n\n" +
+        "Tu solicitud de " +
+        servicio +
+        " ha sido registrada correctamente.\n\n" +
+        "¿Querés enviar también la solicitud por WhatsApp?"
+    );
 
-    window.open(enlace, "_blank", "noopener,noreferrer");
+    if (enviarWhatsApp) {
+
+        const enlace =
+            "https://wa.me/50496565644?text=" +
+            encodeURIComponent(mensaje);
+
+        window.open(
+            enlace,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    }
 
 }
 

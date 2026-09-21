@@ -1286,6 +1286,7 @@ document.addEventListener(
 
                 event.preventDefault();
 
+
                 /* =====================================
                    VALIDAR TODO EL FORMULARIO
                 ===================================== */
@@ -1295,6 +1296,7 @@ document.addEventListener(
                     formulario.reportValidity();
 
                     return;
+
                 }
 
 
@@ -1315,6 +1317,7 @@ document.addEventListener(
                         telefono
                     );
 
+
                 if (!telefonoValido) {
 
                     campoTelefono.setCustomValidity(
@@ -1326,98 +1329,132 @@ document.addEventListener(
                     campoTelefono.setCustomValidity("");
 
                     return;
+
                 }
 
 
-                const pedido = {
-
-                    numeroPedido:
-                        numeroPedido,
-
-                    fecha:
-                        new Date().toLocaleString(
-                            "es-HN"
-                        ),
-
-                    cliente: {
-
-                        nombre:
-                            document.getElementById(
-                                "nombre"
-                            ).value.trim(),
-
-                        telefono:
-                            telefono,
-
-                        correo:
-                            document.getElementById(
-                                "correo"
-                            ).value.trim(),
-
-                        direccion:
-                            document.getElementById(
-                                "direccion"
-                            ).value.trim(),
-
-                        notas:
-                            document.getElementById(
-                                "notas"
-                            ).value.trim(),
-
-                        pago:
-                            document.getElementById(
-                                "pago"
-                            ).value
-
-                    },
-
-                    productos:
-                        carrito,
-
-                    total:
-                        total
-
-                };
-
-
-                /* Generar enlace para WhatsApp con los datos del pedido */
-                const urlWhatsApp =
-                    generarEnlaceWhatsApp(pedido);
-
-                pedido.urlWhatsApp =
-                    urlWhatsApp;
-
-
-                localStorage.setItem(
-                    "pedidoIOC",
-                    JSON.stringify(pedido)
-                );
-
-
-                localStorage.removeItem(
-                    "carritoIOC"
-                );
-
-
-                /* Intentar abrir WhatsApp automáticamente */
                 try {
+
+                    /* Generar número de pedido */
+                    const numeroPedido =
+                        "IOC-" +
+                        Math.floor(
+                            100000 +
+                            Math.random() * 900000
+                        );
+
+
+                    const pedido = {
+
+                        numeroPedido:
+                            numeroPedido,
+
+                        fecha:
+                            new Date().toLocaleString(
+                                "es-HN"
+                            ),
+
+                        cliente: {
+
+                            nombre:
+                                document.getElementById(
+                                    "nombre"
+                                ).value.trim(),
+
+                            telefono:
+                                telefono,
+
+                            correo:
+                                document.getElementById(
+                                    "correo"
+                                ).value.trim(),
+
+                            direccion:
+                                document.getElementById(
+                                    "direccion"
+                                ).value.trim(),
+
+                            notas:
+                                document.getElementById(
+                                    "notas"
+                                ).value.trim(),
+
+                            pago:
+                                document.getElementById(
+                                    "pago"
+                                ).value
+
+                        },
+
+                        productos:
+                            carrito,
+
+                        total:
+                            total
+
+                    };
+
+
+                    /* =====================================
+                       GENERAR ENLACE DE WHATSAPP
+                    ===================================== */
+
+                    const urlWhatsApp =
+                        generarEnlaceWhatsApp(pedido);
+
+                    pedido.urlWhatsApp =
+                        urlWhatsApp;
+
+
+                    /* =====================================
+                       GUARDAR PEDIDO
+                    ===================================== */
+
+                    localStorage.setItem(
+                        "pedidoIOC",
+                        JSON.stringify(pedido)
+                    );
+
+
+                    /* =====================================
+                       LIMPIAR CARRITO
+                    ===================================== */
+
+                    localStorage.removeItem(
+                        "carritoIOC"
+                    );
+
+
+                    /* =====================================
+                       ABRIR WHATSAPP
+                    ===================================== */
+
                     window.open(
                         urlWhatsApp,
                         "_blank"
                     );
-                } catch (error) {
-                    console.warn(
-                        "Apertura automática de WhatsApp bloqueada:",
-                        error
-                    );
-                }
 
 
-                /* Redirigir a confirmación tras breve pausa para permitir la apertura */
-                setTimeout(function() {
+                    /* =====================================
+                       IR A CONFIRMACIÓN
+                    ===================================== */
+
                     window.location.href =
                         "confirmacion.html";
-                }, 350);
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error al confirmar el pedido:",
+                        error
+                    );
+
+                    alert(
+                        "Ocurrió un error al confirmar el pedido. Revisá los datos e intentá nuevamente."
+                    );
+
+                }
 
             }
 
