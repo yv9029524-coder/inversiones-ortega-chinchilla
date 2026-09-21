@@ -18,14 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function obtenerCarrito() {
 
-    const carrito = JSON.parse(
-        localStorage.getItem("carritoIOC")
-    ) || [];
+    const carrito =
+        JSON.parse(
+            localStorage.getItem("carritoIOC")
+        ) || [];
 
     carrito.forEach(producto => {
 
         if (!producto.imagen) {
-            producto.imagen = obtenerImagenProducto(producto.nombre);
+            producto.imagen =
+                obtenerImagenProducto(
+                    producto.nombre
+                );
         }
 
     });
@@ -85,7 +89,9 @@ function obtenerImagenProducto(nombre) {
 function mostrarNotificacion(mensaje) {
 
     let notificacion =
-        document.getElementById("cart-notification");
+        document.getElementById(
+            "cart-notification"
+        );
 
     if (!notificacion) {
 
@@ -100,7 +106,9 @@ function mostrarNotificacion(mensaje) {
             <span class="cart-notification-text"></span>
         `;
 
-        document.body.appendChild(notificacion);
+        document.body.appendChild(
+            notificacion
+        );
     }
 
     const texto =
@@ -119,7 +127,9 @@ function mostrarNotificacion(mensaje) {
     notificacion.notificationTimeout =
         setTimeout(() => {
 
-            notificacion.classList.remove("show");
+            notificacion.classList.remove(
+                "show"
+            );
 
         }, 2500);
 }
@@ -131,7 +141,8 @@ function mostrarNotificacion(mensaje) {
 
 function agregarAlCarrito(nombre, precio) {
 
-    const carrito = obtenerCarrito();
+    const carrito =
+        obtenerCarrito();
 
     const productoExistente =
         carrito.find(
@@ -147,9 +158,15 @@ function agregarAlCarrito(nombre, precio) {
 
         carrito.push({
 
-            nombre: nombre,
-            precio: precio,
-            cantidad: 1,
+            nombre:
+                nombre,
+
+            precio:
+                precio,
+
+            cantidad:
+                1,
+
             imagen:
                 obtenerImagenProducto(nombre)
 
@@ -158,30 +175,61 @@ function agregarAlCarrito(nombre, precio) {
 
     guardarCarrito(carrito);
 
-    /* Animación rápida del contador del carrito */
-    const contador = document.getElementById("cart-count");
 
-    if (contador) {
-        contador.classList.remove("cart-count-pop");
-        void contador.offsetWidth;
-        contador.classList.add("cart-count-pop");
-    }
+    /* Animación del contador */
 
-    /* Animación visual del botón que agregó el producto */
-    const botonAgregar = [...document.querySelectorAll("button")]
-        .find(boton =>
-            boton.textContent.toLowerCase().includes("agregar al carrito")
+    const contador =
+        document.getElementById(
+            "cart-count"
         );
 
+    if (contador) {
+
+        contador.classList.remove(
+            "cart-count-pop"
+        );
+
+        void contador.offsetWidth;
+
+        contador.classList.add(
+            "cart-count-pop"
+        );
+    }
+
+
+    /* Animación del botón */
+
+    const botonAgregar =
+        [...document.querySelectorAll("button")]
+            .find(boton =>
+                boton.textContent
+                    .toLowerCase()
+                    .includes(
+                        "agregar al carrito"
+                    )
+            );
+
     if (botonAgregar) {
-        botonAgregar.classList.remove("add-to-cart-success");
+
+        botonAgregar.classList.remove(
+            "add-to-cart-success"
+        );
+
         void botonAgregar.offsetWidth;
-        botonAgregar.classList.add("add-to-cart-success");
+
+        botonAgregar.classList.add(
+            "add-to-cart-success"
+        );
 
         setTimeout(() => {
-            botonAgregar.classList.remove("add-to-cart-success");
+
+            botonAgregar.classList.remove(
+                "add-to-cart-success"
+            );
+
         }, 700);
     }
+
 
     mostrarNotificacion(
         "✓ Producto agregado al carrito"
@@ -195,12 +243,14 @@ function agregarAlCarrito(nombre, precio) {
 
 function eliminarDelCarrito(nombre) {
 
-    let carrito = obtenerCarrito();
+    let carrito =
+        obtenerCarrito();
 
-    carrito = carrito.filter(
-        producto =>
-            producto.nombre !== nombre
-    );
+    carrito =
+        carrito.filter(
+            producto =>
+                producto.nombre !== nombre
+        );
 
     guardarCarrito(carrito);
 
@@ -216,7 +266,8 @@ function eliminarDelCarrito(nombre) {
 
 function cambiarCantidad(nombre, cantidad) {
 
-    const carrito = obtenerCarrito();
+    const carrito =
+        obtenerCarrito();
 
     const producto =
         carrito.find(
@@ -233,6 +284,7 @@ function cambiarCantidad(nombre, cantidad) {
     if (producto.cantidad <= 0) {
 
         eliminarDelCarrito(nombre);
+
         return;
     }
 
@@ -247,7 +299,9 @@ function cambiarCantidad(nombre, cantidad) {
 function actualizarCarrito() {
 
     const contador =
-        document.getElementById("cart-count");
+        document.getElementById(
+            "cart-count"
+        );
 
     if (!contador) {
         return;
@@ -275,13 +329,19 @@ function actualizarCarrito() {
 function mostrarCarrito() {
 
     const contenedor =
-        document.getElementById("cart-container");
+        document.getElementById(
+            "cart-container"
+        );
 
     const resumen =
-        document.getElementById("cart-summary");
+        document.getElementById(
+            "cart-summary"
+        );
 
     const totalElemento =
-        document.getElementById("cart-total");
+        document.getElementById(
+            "cart-total"
+        );
 
     if (!contenedor) {
         return;
@@ -289,6 +349,9 @@ function mostrarCarrito() {
 
     const carrito =
         obtenerCarrito();
+
+
+    /* Carrito vacío */
 
     if (carrito.length === 0) {
 
@@ -322,13 +385,18 @@ function mostrarCarrito() {
         `;
 
         if (resumen) {
-            resumen.style.display = "none";
+
+            resumen.style.display =
+                "none";
+
         }
 
         return;
     }
 
+
     let total = 0;
+
 
     contenedor.innerHTML =
         carrito.map(producto => {
@@ -338,6 +406,7 @@ function mostrarCarrito() {
                 producto.cantidad;
 
             total += subtotal;
+
 
             return `
 
@@ -352,6 +421,7 @@ function mostrarCarrito() {
 
                     </div>
 
+
                     <div class="cart-item-info">
 
                         <h3>
@@ -365,6 +435,7 @@ function mostrarCarrito() {
 
                     </div>
 
+
                     <div class="cart-quantity">
 
                         <button
@@ -375,9 +446,11 @@ function mostrarCarrito() {
 
                         </button>
 
+
                         <span>
                             ${producto.cantidad}
                         </span>
+
 
                         <button
                             type="button"
@@ -389,6 +462,7 @@ function mostrarCarrito() {
 
                     </div>
 
+
                     <div class="cart-subtotal">
 
                         <strong>
@@ -396,6 +470,7 @@ function mostrarCarrito() {
                         </strong>
 
                     </div>
+
 
                     <button
                         type="button"
@@ -412,6 +487,7 @@ function mostrarCarrito() {
 
         }).join("");
 
+
     if (totalElemento) {
 
         totalElemento.textContent =
@@ -419,9 +495,11 @@ function mostrarCarrito() {
 
     }
 
+
     if (resumen) {
 
-        resumen.style.display = "block";
+        resumen.style.display =
+            "block";
 
     }
 }
@@ -454,51 +532,102 @@ function irAlCheckout() {
    PEDIDO POR WHATSAPP
    ========================================= */
 
-const WHATSAPP_EMPRESA = "50496565644";
+const WHATSAPP_EMPRESA =
+    "50496565644";
+
 
 function generarEnlaceWhatsApp(pedido) {
 
-    if (!pedido || !pedido.productos || !pedido.cliente) {
+    if (
+        !pedido ||
+        !pedido.productos ||
+        !pedido.cliente
+    ) {
+
         return `https://wa.me/${WHATSAPP_EMPRESA}`;
+
     }
+
 
     let lineasProductos = "";
 
-    pedido.productos.forEach((item, index) => {
 
-        const subtotal =
-            item.precio * item.cantidad;
+    pedido.productos.forEach(
+        (item, index) => {
 
-        lineasProductos +=
-            `${index + 1}. *${item.nombre}*\n` +
-            `   • Cantidad: ${item.cantidad}\n` +
-            `   • Subtotal: L ${subtotal.toLocaleString()}\n`;
+            const subtotal =
+                item.precio *
+                item.cantidad;
 
-    });
+            lineasProductos +=
+
+                `${index + 1}. *${item.nombre}*\n` +
+
+                `   • Cantidad: ${item.cantidad}\n` +
+
+                `   • Subtotal: L ${subtotal.toLocaleString()}\n`;
+
+        }
+    );
+
 
     const correoTexto =
+
         pedido.cliente.correo &&
         pedido.cliente.correo.trim() !== ""
+
             ? pedido.cliente.correo.trim()
+
             : "No especificado";
 
+
+    const notasTexto =
+
+        pedido.cliente.notas &&
+        pedido.cliente.notas.trim() !== ""
+
+            ? pedido.cliente.notas.trim()
+
+            : "Sin indicaciones";
+
+
     const mensaje =
+
         `¡Hola, Inversiones Ortega Chinchilla! 👋\n` +
+
         `Quiero confirmar el siguiente pedido realizado en su sitio web:\n\n` +
+
         `📦 *NÚMERO DE PEDIDO:* ${pedido.numeroPedido}\n` +
+
         `📅 *Fecha:* ${pedido.fecha}\n\n` +
+
         `👤 *DATOS DEL CLIENTE:*\n` +
+
         `• *Nombre:* ${pedido.cliente.nombre}\n` +
+
         `• *Teléfono:* ${pedido.cliente.telefono}\n` +
+
         `• *Correo:* ${correoTexto}\n` +
+
         `• *Dirección de entrega:* ${pedido.cliente.direccion}\n` +
-        `• *Método de pago:* ${pedido.cliente.pago}\n\n` +
+
+        `• *Método de pago:* ${pedido.cliente.pago}\n` +
+
+        `• *Indicaciones adicionales:* ${notasTexto}\n\n` +
+
         `🛒 *DETALLE DE PRODUCTOS:*\n` +
+
         `${lineasProductos}\n` +
+
         `💰 *TOTAL A PAGAR: L ${pedido.total.toLocaleString()}*\n\n` +
+
         `Quedo a la espera de su confirmación y detalles de entrega. ¡Muchas gracias!`;
 
-    return `https://wa.me/${WHATSAPP_EMPRESA}?text=${encodeURIComponent(mensaje)}`;
+
+    return (
+        `https://wa.me/${WHATSAPP_EMPRESA}?text=` +
+        encodeURIComponent(mensaje)
+    );
 }
 
 
@@ -509,137 +638,211 @@ function generarEnlaceWhatsApp(pedido) {
 function iniciarAnimaciones() {
 
     const selectores = `
+
         .page-hero,
+
         .reviews-hero,
+
         .care-hero,
+
         .section-title,
+
         .benefit-card,
+
         .product-card,
+
         .service-card,
+
         .care-card,
+
         .employee-box,
+
         .care-cta,
+
         .promotion,
+
         .gallery-item,
+
         .work-gallery-item,
+
         .review-page-card,
+
         .reviews-summary,
+
         .reviews-score,
+
         .reviews-summary-info,
+
         .reviews-example-note,
+
         .review-form-wrapper,
+
         .cta,
+
         .about-grid,
+
         .contact-grid,
+
         .cart-section,
+
         .checkout-section,
+
         .confirmation-box
+
     `;
 
+
     const elementos =
-        document.querySelectorAll(selectores);
+        document.querySelectorAll(
+            selectores
+        );
+
 
     if (!elementos.length) {
         return;
     }
 
-    elementos.forEach((elemento, indice) => {
 
-        elemento.classList.add(
-            "scroll-animate"
-        );
+    elementos.forEach(
+        (elemento, indice) => {
 
-        const retraso =
-            (indice % 6) * 0.10;
-
-        elemento.style.setProperty(
-            "--animation-delay",
-            `${retraso}s`
-        );
-
-    });
+            elemento.classList.add(
+                "scroll-animate"
+            );
 
 
-    /* Encabezados visibles inmediatamente */
+            const retraso =
+                (indice % 6) * 0.10;
+
+
+            elemento.style.setProperty(
+                "--animation-delay",
+                `${retraso}s`
+            );
+
+        }
+    );
+
+
+    /* Encabezados */
 
     const encabezados =
         document.querySelectorAll(`
+
             .page-hero,
+
             .reviews-hero,
+
             .care-hero
+
         `);
 
-    encabezados.forEach(encabezado => {
 
-        encabezado.classList.add(
-            "visible"
-        );
+    encabezados.forEach(
+        encabezado => {
 
-        encabezado.style.setProperty(
-            "--animation-delay",
-            "0s"
-        );
+            encabezado.classList.add(
+                "visible"
+            );
 
-    });
+            encabezado.style.setProperty(
+                "--animation-delay",
+                "0s"
+            );
+
+        }
+    );
 
 
     /* Animación al hacer scroll */
 
-    if (!("IntersectionObserver" in window)) {
+    if (
+        !(
+            "IntersectionObserver"
+            in window
+        )
+    ) {
 
-        elementos.forEach(elemento => {
+        elementos.forEach(
+            elemento => {
 
-            elemento.classList.add(
-                "visible"
-            );
+                elemento.classList.add(
+                    "visible"
+                );
 
-        });
+            }
+        );
 
     } else {
 
         const observador =
             new IntersectionObserver(
+
                 (entradas, observer) => {
 
-                    entradas.forEach(entrada => {
+                    entradas.forEach(
+                        entrada => {
 
-                        if (entrada.isIntersecting) {
+                            if (
+                                entrada.isIntersecting
+                            ) {
 
-                            entrada.target.classList.add(
-                                "visible"
-                            );
+                                entrada.target.classList.add(
+                                    "visible"
+                                );
 
-                            observer.unobserve(
-                                entrada.target
-                            );
+                                observer.unobserve(
+                                    entrada.target
+                                );
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
+
                 {
                     threshold: 0.10,
+
                     rootMargin:
                         "0px 0px -35px 0px"
                 }
+
             );
 
-        elementos.forEach(elemento => {
 
-            if (
-                !elemento.classList.contains("page-hero") &&
-                !elemento.classList.contains("reviews-hero") &&
-                !elemento.classList.contains("care-hero")
-            ) {
+        elementos.forEach(
+            elemento => {
 
-                observador.observe(
-                    elemento
-                );
+                if (
+
+                    !elemento.classList.contains(
+                        "page-hero"
+                    )
+
+                    &&
+
+                    !elemento.classList.contains(
+                        "reviews-hero"
+                    )
+
+                    &&
+
+                    !elemento.classList.contains(
+                        "care-hero"
+                    )
+
+                ) {
+
+                    observador.observe(
+                        elemento
+                    );
+
+                }
 
             }
-
-        });
+        );
 
     }
 
@@ -650,6 +853,7 @@ function iniciarAnimaciones() {
         document.querySelector(
             ".employee-box"
         );
+
 
     if (empleado) {
 
@@ -663,6 +867,7 @@ function iniciarAnimaciones() {
 
             }
         );
+
 
         empleado.addEventListener(
             "mouseleave",
@@ -682,40 +887,52 @@ function iniciarAnimaciones() {
 
     const tarjetas =
         document.querySelectorAll(`
+
             .product-card,
+
             .service-card,
+
             .care-card,
+
             .benefit-card,
+
             .review-page-card,
+
             .work-gallery-item,
+
             .gallery-item
+
         `);
 
-    tarjetas.forEach(tarjeta => {
 
-        tarjeta.addEventListener(
-            "mouseenter",
-            () => {
+    tarjetas.forEach(
+        tarjeta => {
 
-                tarjeta.classList.add(
-                    "card-hover"
-                );
+            tarjeta.addEventListener(
+                "mouseenter",
+                () => {
 
-            }
-        );
+                    tarjeta.classList.add(
+                        "card-hover"
+                    );
 
-        tarjeta.addEventListener(
-            "mouseleave",
-            () => {
+                }
+            );
 
-                tarjeta.classList.remove(
-                    "card-hover"
-                );
 
-            }
-        );
+            tarjeta.addEventListener(
+                "mouseleave",
+                () => {
 
-    });
+                    tarjeta.classList.remove(
+                        "card-hover"
+                    );
+
+                }
+            );
+
+        }
+    );
 
 }
 
@@ -731,12 +948,17 @@ function iniciarMenu() {
             "menu-toggle"
         );
 
+
     const nav =
-        document.querySelector(".nav");
+        document.querySelector(
+            ".nav"
+        );
+
 
     if (!menuToggle || !nav) {
         return;
     }
+
 
     menuToggle.addEventListener(
         "click",
@@ -746,6 +968,7 @@ function iniciarMenu() {
                 "active"
             );
 
+
             menuToggle.classList.toggle(
                 "active"
             );
@@ -754,29 +977,34 @@ function iniciarMenu() {
     );
 
 
-    /* Cerrar menú al seleccionar una opción */
+    /* Cerrar menú */
 
     const enlaces =
         nav.querySelectorAll("a");
 
-    enlaces.forEach(enlace => {
 
-        enlace.addEventListener(
-            "click",
-            () => {
+    enlaces.forEach(
+        enlace => {
 
-                nav.classList.remove(
-                    "active"
-                );
+            enlace.addEventListener(
+                "click",
+                () => {
 
-                menuToggle.classList.remove(
-                    "active"
-                );
+                    nav.classList.remove(
+                        "active"
+                    );
 
-            }
-        );
 
-    });
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
 }
 
 
@@ -791,29 +1019,41 @@ function iniciarGaleria() {
             "image-modal"
         );
 
+
     const imagen =
         document.getElementById(
             "image-modal-content"
         );
+
 
     const cerrar =
         document.querySelector(
             ".image-modal-close"
         );
 
-    if (!modal || !imagen || !cerrar) {
+
+    if (
+        !modal ||
+        !imagen ||
+        !cerrar
+    ) {
+
         return;
+
     }
 
 
     window.abrirImagen =
         function(src) {
 
-            imagen.src = src;
+            imagen.src =
+                src;
+
 
             modal.classList.add(
                 "active"
             );
+
 
             document.body.classList.add(
                 "modal-open"
@@ -830,7 +1070,7 @@ function iniciarGaleria() {
 
     modal.addEventListener(
         "click",
-        (evento) => {
+        evento => {
 
             if (
                 evento.target === modal
@@ -846,13 +1086,18 @@ function iniciarGaleria() {
 
     document.addEventListener(
         "keydown",
-        (evento) => {
+        evento => {
 
             if (
-                evento.key === "Escape" &&
+
+                evento.key === "Escape"
+
+                &&
+
                 modal.classList.contains(
                     "active"
                 )
+
             ) {
 
                 cerrarGaleria();
@@ -868,6 +1113,7 @@ function iniciarGaleria() {
         modal.classList.remove(
             "active"
         );
+
 
         document.body.classList.remove(
             "modal-open"
@@ -891,42 +1137,47 @@ document.addEventListener(
                 ".btn-primary, .btn-secondary, button"
             );
 
-        botones.forEach(boton => {
 
-            boton.addEventListener(
-                "mousedown",
-                () => {
+        botones.forEach(
+            boton => {
 
-                    boton.classList.add(
-                        "button-pressed"
-                    );
+                boton.addEventListener(
+                    "mousedown",
+                    () => {
 
-                }
-            );
+                        boton.classList.add(
+                            "button-pressed"
+                        );
 
-            boton.addEventListener(
-                "mouseup",
-                () => {
+                    }
+                );
 
-                    boton.classList.remove(
-                        "button-pressed"
-                    );
 
-                }
-            );
+                boton.addEventListener(
+                    "mouseup",
+                    () => {
 
-            boton.addEventListener(
-                "mouseleave",
-                () => {
+                        boton.classList.remove(
+                            "button-pressed"
+                        );
 
-                    boton.classList.remove(
-                        "button-pressed"
-                    );
+                    }
+                );
 
-                }
-            );
 
-        });
+                boton.addEventListener(
+                    "mouseleave",
+                    () => {
+
+                        boton.classList.remove(
+                            "button-pressed"
+                        );
+
+                    }
+                );
+
+            }
+        );
 
     }
 );
@@ -938,7 +1189,7 @@ document.addEventListener(
 
 document.addEventListener(
     "error",
-    (evento) => {
+    evento => {
 
         if (
             evento.target.tagName === "IMG"
@@ -969,171 +1220,341 @@ document.addEventListener(
                 .pop()
                 .toLowerCase();
 
+
         const paginaActual =
+
             ruta === ""
+
                 ? "index.html"
+
                 : ruta;
+
 
         const enlacesMenu =
             document.querySelectorAll(
                 ".nav a"
             );
 
-        enlacesMenu.forEach(enlace => {
 
-            const destino =
-                enlace.getAttribute("href");
+        enlacesMenu.forEach(
+            enlace => {
 
-            if (
-                !destino ||
-                destino.startsWith("#")
-            ) {
-                return;
+                const destino =
+                    enlace.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    !destino ||
+                    destino.startsWith("#")
+                ) {
+
+                    return;
+
+                }
+
+
+                const paginaDestino =
+                    destino
+                        .split("/")
+                        .pop()
+                        .split("?")[0]
+                        .toLowerCase();
+
+
+                if (
+                    paginaActual ===
+                    paginaDestino
+                ) {
+
+                    enlace.classList.add(
+                        "active"
+                    );
+
+                }
+
             }
-
-            const paginaDestino =
-                destino
-                    .split("/")
-                    .pop()
-                    .split("?")[0]
-                    .toLowerCase();
-
-            if (
-                paginaActual === paginaDestino
-            ) {
-
-                enlace.classList.add(
-                    "active"
-                );
-
-            }
-
-        });
+        );
 
     }
 );
+
+
 /* =========================================================
    MÚSICA DEL SITIO
    ========================================================= */
+
 (function iniciarMusicaSitio() {
 
     function crearReproductorMusica() {
 
-        if (document.getElementById("site-music-control")) {
+        if (
+            document.getElementById(
+                "site-music-control"
+            )
+        ) {
+
             return;
+
         }
 
-        const audio = document.createElement("audio");
 
-        audio.id = "site-music";
-        audio.loop = true;
-        audio.preload = "metadata";
-      audio.src = "audio/musica_suave_inversiones.mp3";
+        const audio =
+            document.createElement(
+                "audio"
+            );
 
-        const boton = document.createElement("button");
 
-        boton.type = "button";
-        boton.id = "site-music-control";
-        boton.className = "site-music-control";
+        audio.id =
+            "site-music";
 
-        boton.setAttribute("aria-label", "Reproducir música");
-        boton.setAttribute("title", "Reproducir música");
+
+        audio.loop =
+            true;
+
+
+        audio.preload =
+            "metadata";
+
+
+        audio.src =
+            "audio/musica_suave_inversiones.mp3";
+
+
+        const boton =
+            document.createElement(
+                "button"
+            );
+
+
+        boton.type =
+            "button";
+
+
+        boton.id =
+            "site-music-control";
+
+
+        boton.className =
+            "site-music-control";
+
+
+        boton.setAttribute(
+            "aria-label",
+            "Reproducir música"
+        );
+
+
+        boton.setAttribute(
+            "title",
+            "Reproducir música"
+        );
+
 
         boton.innerHTML = `
-            <span class="site-music-icon">▶</span>
-            <span class="site-music-text">Música</span>
+
+            <span class="site-music-icon">
+                ▶
+            </span>
+
+            <span class="site-music-text">
+                Música
+            </span>
+
         `;
 
-        document.body.appendChild(audio);
-        document.body.appendChild(boton);
 
-        let reproduciendo = false;
+        document.body.appendChild(
+            audio
+        );
+
+
+        document.body.appendChild(
+            boton
+        );
+
+
+        let reproduciendo =
+            false;
+
 
         function actualizarBoton() {
 
             if (reproduciendo) {
 
                 boton.innerHTML = `
-                    <span class="site-music-icon">⏸</span>
-                    <span class="site-music-text">Pausar</span>
+
+                    <span class="site-music-icon">
+                        ⏸
+                    </span>
+
+                    <span class="site-music-text">
+                        Pausar
+                    </span>
+
                 `;
 
-                boton.setAttribute("aria-label", "Pausar música");
-                boton.setAttribute("title", "Pausar música");
 
-                boton.classList.add("playing");
+                boton.setAttribute(
+                    "aria-label",
+                    "Pausar música"
+                );
+
+
+                boton.setAttribute(
+                    "title",
+                    "Pausar música"
+                );
+
+
+                boton.classList.add(
+                    "playing"
+                );
 
             } else {
 
                 boton.innerHTML = `
-                    <span class="site-music-icon">▶</span>
-                    <span class="site-music-text">Música</span>
+
+                    <span class="site-music-icon">
+                        ▶
+                    </span>
+
+                    <span class="site-music-text">
+                        Música
+                    </span>
+
                 `;
 
-                boton.setAttribute("aria-label", "Reproducir música");
-                boton.setAttribute("title", "Reproducir música");
 
-                boton.classList.remove("playing");
+                boton.setAttribute(
+                    "aria-label",
+                    "Reproducir música"
+                );
+
+
+                boton.setAttribute(
+                    "title",
+                    "Reproducir música"
+                );
+
+
+                boton.classList.remove(
+                    "playing"
+                );
+
             }
+
         }
 
-        boton.addEventListener("click", async () => {
 
-            if (audio.paused) {
+        boton.addEventListener(
+            "click",
+            async () => {
 
-                try {
+                if (
+                    audio.paused
+                ) {
 
-                    await audio.play();
+                    try {
 
-                    reproduciendo = true;
+                        await audio.play();
 
-                    localStorage.setItem("musicaIOC", "on");
 
-                } catch (error) {
+                        reproduciendo =
+                            true;
 
-                    reproduciendo = false;
 
-                    localStorage.setItem("musicaIOC", "off");
+                        localStorage.setItem(
+                            "musicaIOC",
+                            "on"
+                        );
+
+
+                    } catch (error) {
+
+                        reproduciendo =
+                            false;
+
+
+                        localStorage.setItem(
+                            "musicaIOC",
+                            "off"
+                        );
+
+                    }
+
+                } else {
+
+                    audio.pause();
+
+
+                    reproduciendo =
+                        false;
+
+
+                    localStorage.setItem(
+                        "musicaIOC",
+                        "off"
+                    );
+
                 }
 
-            } else {
 
-                audio.pause();
+                actualizarBoton();
 
-                reproduciendo = false;
-
-                localStorage.setItem("musicaIOC", "off");
             }
+        );
 
-            actualizarBoton();
-        });
 
-        audio.addEventListener("play", () => {
+        audio.addEventListener(
+            "play",
+            () => {
 
-            reproduciendo = true;
+                reproduciendo =
+                    true;
 
-            actualizarBoton();
-        });
+                actualizarBoton();
 
-        audio.addEventListener("pause", () => {
+            }
+        );
 
-            reproduciendo = false;
 
-            actualizarBoton();
-        });
+        audio.addEventListener(
+            "pause",
+            () => {
 
-        audio.addEventListener("error", () => {
+                reproduciendo =
+                    false;
 
-            boton.setAttribute(
-                "title",
-                "No se pudo cargar la música"
-            );
-        });
+                actualizarBoton();
+
+            }
+        );
+
+
+        audio.addEventListener(
+            "error",
+            () => {
+
+                boton.setAttribute(
+                    "title",
+                    "No se pudo cargar la música"
+                );
+
+            }
+        );
+
 
         actualizarBoton();
+
     }
 
-    if (document.readyState === "loading") {
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
 
         document.addEventListener(
             "DOMContentLoaded",
@@ -1143,6 +1564,7 @@ document.addEventListener(
     } else {
 
         crearReproductorMusica();
+
     }
 
 })();

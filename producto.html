@@ -3,19 +3,57 @@
 
 <head>
 
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Detalle del producto | Inversiones Ortega Chinchilla
-    </title>
+<meta
+    name="description"
+    content="Consultá información, precio y detalles de productos automotrices disponibles en Inversiones Ortega Chinchilla.">
+
+<title>
+    Detalle del producto | Inversiones Ortega Chinchilla
+</title>
 
     <link
         rel="stylesheet"
         href="style.css">
+
+    <link rel="canonical" href="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/producto.html">
+    <link rel="icon" type="image/jpeg" href="img/logo/logo.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Detalle del producto | Inversiones Ortega Chinchilla">
+    <meta property="og:description" content="Consultá información, precio y detalles de productos automotrices disponibles en Inversiones Ortega Chinchilla.">
+    <meta property="og:url" content="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/producto.html">
+    <meta property="og:image" content="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/img/logo/logo.jpg">
+    <meta property="og:site_name" content="Inversiones Ortega Chinchilla">
+    <meta property="og:locale" content="es_HN">
+
+    <!-- DATOS ESTRUCTURADOS DEL PRODUCTO -->
+    <script id="product-jsonld" type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Producto",
+        "description": "Consultá información, precio y detalles de productos automotrices disponibles en Inversiones Ortega Chinchilla.",
+        "image": "https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/img/logo/logo.jpg",
+        "brand": {
+            "@type": "Brand",
+            "name": "Inversiones Ortega Chinchilla"
+        },
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "HNL",
+            "price": "0",
+            "availability": "https://schema.org/InStock",
+            "url": "https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/producto.html"
+        }
+    }
+    </script>
+
 
     <style>
 
@@ -779,6 +817,40 @@ if (!productoSeleccionado) {
         productos["Galón de aceite de motor"];
 
 }
+
+
+/* =========================================
+   ACTUALIZAR DATOS ESTRUCTURADOS
+========================================= */
+
+function actualizarDatosEstructuradosProducto() {
+
+    const datos = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": productoSeleccionado.nombre,
+        "description": productoSeleccionado.descripcion,
+        "image":
+            "https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/" +
+            productoSeleccionado.imagen,
+        "brand": {
+            "@type": "Brand",
+            "name": "Inversiones Ortega Chinchilla"
+        },
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "HNL",
+            "price": String(productoSeleccionado.precio),
+            "availability": "https://schema.org/InStock",
+            "url": window.location.href
+        }
+    };
+
+    document.getElementById("product-jsonld").textContent =
+        JSON.stringify(datos, null, 4);
+}
+
+actualizarDatosEstructuradosProducto();
 
 
 /* =========================================

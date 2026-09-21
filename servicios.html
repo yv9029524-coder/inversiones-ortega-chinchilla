@@ -2,12 +2,27 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="description" content="Conocé los servicios de Inversiones Ortega Chinchilla: cambio de aceite, mecánica general, parqueo y lavado de auto en San Pedro Sula.">
+
     <title>Servicios | Inversiones Ortega Chinchilla</title>
+<link rel="canonical" href="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/servicios.html">
+<link rel="icon" type="image/jpeg" href="img/logo/logo.jpg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Servicios | Inversiones Ortega Chinchilla">
+<meta property="og:description" content="Conocé los servicios de Inversiones Ortega Chinchilla para el mantenimiento y cuidado de tu vehículo en San Pedro Sula.">
+<meta property="og:url" content="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/servicios.html">
+<meta property="og:image" content="https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/img/logo/logo.jpg">
+<meta property="og:site_name" content="Inversiones Ortega Chinchilla">
+<meta property="og:locale" content="es_HN">
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -25,9 +40,6 @@
 
         </a>
 
-
-        <!-- BOTÓN DEL MENÚ EN CELULAR -->
-
         <button class="menu-toggle"
                 id="menu-toggle"
                 aria-label="Abrir menú">
@@ -36,10 +48,11 @@
 
         </button>
 
-
         <nav class="nav">
 
-            <a href="index.html">Inicio</a>
+            <a href="index.html">
+                Inicio
+            </a>
 
             <a href="productos.html">
                 Productos
@@ -48,20 +61,32 @@
             <a href="servicios.html">
                 Servicios
             </a>
-                    <a href="cuidado.html">Cuidado del vehículo</a>
+
+            <a href="cuidado.html">
+                Cuidado del vehículo
+            </a>
 
             <a href="nosotros.html">
                 Nosotros
             </a>
-            <a href="resenas.html">Reseñas</a>
+
+            <a href="resenas.html">
+                Reseñas
+            </a>
 
             <a href="contacto.html">
                 Contacto
             </a>
 
-            <a href="carrito.html">
+            <a href="carrito.html"
+               class="cart-link">
+
                 🛒 Carrito
-                (<span id="cart-count">0</span>)
+
+                <span id="cart-count">
+                    0
+                </span>
+
             </a>
 
         </nav>
@@ -70,13 +95,7 @@
 
 </header>
 
-
 <main>
-
-
-    <!-- =========================================
-         ENCABEZADO DE SERVICIOS
-    ========================================= -->
 
     <section class="page-hero">
 
@@ -100,16 +119,9 @@
 
     </section>
 
-
-
-    <!-- =========================================
-         NUESTROS SERVICIOS
-    ========================================= -->
-
     <section class="services-section">
 
         <div class="container">
-
 
             <div class="section-heading">
 
@@ -128,12 +140,7 @@
 
             </div>
 
-
-
             <div class="services-grid">
-
-
-                <!-- SERVICIO 1 -->
 
                 <article class="service-card">
 
@@ -143,7 +150,6 @@
                              alt="Cambio de aceite">
 
                     </div>
-
 
                     <div class="service-info">
 
@@ -165,17 +171,16 @@
                             Desde L 450
                         </strong>
 
-                        <button onclick="solicitarServicio('Cambio de aceite')">
+                        <button type="button"
+                                onclick="solicitarServicio('Cambio de aceite')">
+
                             Solicitar servicio
+
                         </button>
 
                     </div>
 
                 </article>
-
-
-
-                <!-- SERVICIO 2 -->
 
                 <article class="service-card">
 
@@ -185,7 +190,6 @@
                              alt="Mecánica general">
 
                     </div>
-
 
                     <div class="service-info">
 
@@ -207,17 +211,16 @@
                             Desde L 800
                         </strong>
 
-                        <button onclick="solicitarServicio('Mecánica general')">
+                        <button type="button"
+                                onclick="solicitarServicio('Mecánica general')">
+
                             Solicitar servicio
+
                         </button>
 
                     </div>
 
                 </article>
-
-
-
-                <!-- SERVICIO 3 -->
 
                 <article class="service-card">
 
@@ -227,7 +230,6 @@
                              alt="Parqueo">
 
                     </div>
-
 
                     <div class="service-info">
 
@@ -249,17 +251,16 @@
                             Precio referencial: L 50
                         </strong>
 
-                        <button onclick="solicitarServicio('Parqueo')">
+                        <button type="button"
+                                onclick="solicitarServicio('Parqueo')">
+
                             Solicitar servicio
+
                         </button>
 
                     </div>
 
                 </article>
-
-
-
-                <!-- SERVICIO 4 -->
 
                 <article class="service-card">
 
@@ -269,7 +270,6 @@
                              alt="Lavado de auto">
 
                     </div>
-
 
                     <div class="service-info">
 
@@ -291,26 +291,22 @@
                             Desde L 200
                         </strong>
 
-                        <button onclick="solicitarServicio('Lavado de auto')">
+                        <button type="button"
+                                onclick="solicitarServicio('Lavado de auto')">
+
                             Solicitar servicio
+
                         </button>
 
                     </div>
 
                 </article>
 
-
             </div>
 
         </div>
 
     </section>
-
-
-
-    <!-- =========================================
-         LLAMADO A LA ACCIÓN
-    ========================================= -->
 
     <section class="cta">
 
@@ -332,7 +328,6 @@
 
             </div>
 
-
             <a href="contacto.html"
                class="btn btn-light">
 
@@ -344,21 +339,11 @@
 
     </section>
 
-
 </main>
-
-
-
-<!-- =========================================
-     PIE DE PÁGINA
-========================================= -->
 
 <footer class="footer">
 
     <div class="container footer-grid">
-
-
-        <!-- INFORMACIÓN -->
 
         <div class="footer-column footer-about">
 
@@ -377,10 +362,6 @@
 
         </div>
 
-
-
-        <!-- ENLACES -->
-
         <div class="footer-column">
 
             <h3>
@@ -398,10 +379,17 @@
             <a href="servicios.html">
                 Servicios
             </a>
-            <a href="cuidado.html">Cuidado del vehículo</a>
+
+            <a href="cuidado.html">
+                Cuidado del vehículo
+            </a>
 
             <a href="nosotros.html">
                 Nosotros
+            </a>
+
+            <a href="resenas.html">
+                Reseñas
             </a>
 
             <a href="contacto.html">
@@ -413,10 +401,6 @@
             </a>
 
         </div>
-
-
-
-        <!-- CONTACTO -->
 
         <div class="footer-column">
 
@@ -439,10 +423,6 @@
             </p>
 
         </div>
-
-
-
-        <!-- HORARIOS -->
 
         <div class="footer-column">
 
@@ -469,8 +449,6 @@
 
     </div>
 
-
-
     <div class="footer-social">
 
         <a href="contacto.html">
@@ -478,8 +456,6 @@
         </a>
 
     </div>
-
-
 
     <div class="footer-bottom">
 
@@ -492,10 +468,6 @@
 
 </footer>
 
-
-
-<!-- WHATSAPP -->
-
 <a href="https://wa.me/50496565644"
    class="whatsapp-button"
    aria-label="Contactar por WhatsApp">
@@ -504,23 +476,26 @@
 
 </a>
 
-
-
 <script src="script.js"></script>
-
 
 <script>
 
 function solicitarServicio(servicio) {
 
-    alert(
-        "Has seleccionado el servicio: " + servicio
-    );
+    const mensaje =
+        "Hola, quiero solicitar el servicio de " +
+        servicio +
+        ". Me gustaría consultar disponibilidad y precio.";
+
+    const enlace =
+        "https://wa.me/50496565644?text=" +
+        encodeURIComponent(mensaje);
+
+    window.open(enlace, "_blank", "noopener,noreferrer");
 
 }
 
 </script>
-
 
 </body>
 

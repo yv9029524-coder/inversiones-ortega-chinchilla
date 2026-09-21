@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yv9029524-coder.github.io/inversiones-ortega-chinchilla/sitemap.xml

@@ -1284,16 +1284,49 @@ document.addEventListener(
             "submit",
             function(event) {
 
-
                 event.preventDefault();
 
+                /* =====================================
+                   VALIDAR TODO EL FORMULARIO
+                ===================================== */
 
-                const numeroPedido =
-                    "IOC-" +
-                    Math.floor(
-                        100000 +
-                        Math.random() * 900000
+                if (!formulario.checkValidity()) {
+
+                    formulario.reportValidity();
+
+                    return;
+                }
+
+
+                /* =====================================
+                   VALIDAR TELÉFONO
+                ===================================== */
+
+                const campoTelefono =
+                    document.getElementById(
+                        "telefono"
                     );
+
+                const telefono =
+                    campoTelefono.value.trim();
+
+                const telefonoValido =
+                    /^[0-9]{4}-?[0-9]{4}$/.test(
+                        telefono
+                    );
+
+                if (!telefonoValido) {
+
+                    campoTelefono.setCustomValidity(
+                        "Ingresá un número de teléfono válido de 8 dígitos. Ejemplo: 96565644"
+                    );
+
+                    campoTelefono.reportValidity();
+
+                    campoTelefono.setCustomValidity("");
+
+                    return;
+                }
 
 
                 const pedido = {
@@ -1314,9 +1347,7 @@ document.addEventListener(
                             ).value.trim(),
 
                         telefono:
-                            document.getElementById(
-                                "telefono"
-                            ).value.trim(),
+                            telefono,
 
                         correo:
                             document.getElementById(
